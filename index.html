@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>特殊選才備審資料 | 程式作品展示</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+        body { font-family: 'Noto Sans TC', sans-serif; }
+        
+        /* 網頁整體滾動條美化 */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
+        
+        /* 手機版橫向滑動區塊隱藏原生捲軸，保持美觀 */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #2563eb, #9333ea, #db2777);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* 拖曳時防止文字被選取 */
+        .no-select {
+            user-select: none;
+            -webkit-user-select: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased selection:bg-blue-200 selection:text-blue-900">
+
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white shadow-md">
+                        <i class="fas fa-terminal text-sm"></i>
+                    </div>
+                    <span class="font-bold text-xl tracking-wider text-gray-900 ml-1">PortfolioHub</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-600 hover:text-blue-600 transition font-medium">簡歷與動機</a>
+                    <a href="#deployed-projects" class="text-gray-600 hover:text-blue-600 transition font-medium">實戰部署專案</a>
+                    <a href="#practice-projects" class="text-gray-600 hover:text-blue-600 transition font-medium">微型實作沙盒</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header id="about" class="relative bg-white overflow-hidden">
+        <div class="absolute inset-y-0 left-0 w-1/2 bg-gray-50 rounded-r-full opacity-50 transform -translate-x-1/3"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24 lg:pt-32 lg:pb-32 text-center relative z-10">
+            <div class="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 text-blue-700 font-semibold text-sm mb-6 border border-blue-100 shadow-sm">
+                <i class="fas fa-graduation-cap mr-2"></i> 特殊選才備審專用
+            </div>
+            <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+                <span class="block">自學程式設計的軌跡</span>
+                <span class="block gradient-text mt-3">技術實踐與學習歷程展示</span>
+            </h1>
+            <p class="mt-6 max-w-3xl text-lg text-gray-600 mx-auto leading-relaxed">
+                各位教授好，歡迎蒞臨我的程式實作展示樞紐。本網站整合了我自學程式以來的各階段心血，從基礎概念的刻意練習，到整合前沿 AI 技術的實戰專案。期盼能透過此動態平台，具體呈現我的自學成效、技術底蘊與解決問題的動能。
+            </p>
+            <div class="mt-10 flex justify-center gap-4 flex-col sm:flex-row">
+                <a href="#deployed-projects" class="px-8 py-3.5 border border-transparent text-base font-semibold rounded-full text-white bg-blue-600 hover:bg-blue-700 md:text-lg transition-all shadow-lg hover:shadow-blue-500/30 hover:-translate-y-0.5">
+                    <i class="fas fa-rocket mr-2"></i> 觀看實戰專案
+                </a>
+                <a href="#practice-projects" class="px-8 py-3.5 border-2 border-gray-200 text-base font-semibold rounded-full text-gray-700 bg-white hover:border-blue-600 hover:text-blue-600 md:text-lg transition-all shadow-sm hover:shadow-md">
+                    <i class="fas fa-code mr-2"></i> 探索實作沙盒
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="deployed-projects" class="py-24 bg-gray-50 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">已部署的大型實戰專案</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto mt-6 rounded-full"></div>
+                <p class="mt-6 max-w-2xl text-lg text-gray-500 mx-auto">
+                    這些是我整合多項技術、獨立規劃並實際部署上線的完整網站作品。展現了從發想、刻版、邏輯實作到正式上線的端到端 (End-to-End) 開發能力。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- 專案 1: 前端技術啟蒙作品集 -->
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group border border-gray-200 flex flex-col">
+                    <div class="h-52 bg-gradient-to-br from-indigo-500 via-blue-600 to-cyan-500 flex items-center justify-center text-white relative overflow-hidden">
+                        <i class="fas fa-laptop-code text-7xl opacity-40 group-hover:scale-110 transition-transform duration-700 group-hover:rotate-3"></i>
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-300"></div>
+                        <div class="absolute bottom-4 right-4 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium border border-white/30">v1.0</div>
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">前端技術啟蒙作品集</h3>
+                        </div>
+                        <p class="text-gray-600 text-base leading-relaxed mb-6 flex-grow">
+                            這是我踏入網頁開發領域的首個里程碑。網站中不僅收錄了早期 HTML、CSS 與 JavaScript 的綜合實作，更特闢專區記錄我的讀書心得與反思。這個專案證明了我在累積技術硬實力的同時，亦重視人文素養與知識沉澱的特質。
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-md">HTML5</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-md">CSS3</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-md">Vanilla JS</span>
+                        </div>
+                        <a href="https://bosscod1.github.io/PortfolioPage/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center w-full justify-center px-4 py-3 border border-gray-300 text-sm font-semibold rounded-xl text-gray-700 bg-white hover:bg-gray-50 hover:border-blue-500 hover:text-blue-600 transition-all shadow-sm">
+                            造訪網站 <i class="fas fa-external-link-alt ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 專案 2: 實驗教育自學歷程 -->
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group border border-gray-200 flex flex-col">
+                    <div class="h-52 bg-gradient-to-br from-teal-500 via-emerald-500 to-green-600 flex items-center justify-center text-white relative overflow-hidden">
+                        <i class="fas fa-user-graduate text-7xl opacity-40 group-hover:scale-110 transition-transform duration-700 group-hover:-rotate-3"></i>
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-300"></div>
+                        <div class="absolute bottom-4 right-4 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium border border-white/30">學習紀錄</div>
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-bold text-gray-900 group-hover:text-emerald-600 transition-colors">實驗教育自學歷程展示</h3>
+                        </div>
+                        <p class="text-gray-600 text-base leading-relaxed mb-6 flex-grow">
+                            這是專為「自學訪視報告」量身打造的動態履歷。有別於傳統文件，我透過網站有條理地彙整了各科目的階段性學習軌跡。此專案展現了我將龐雜資訊結構化，並透過優良 UI/UX 介面直觀呈現給審查委員的能力。
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-md">Responsive Design</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-md">UI/UX</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-md">Data Structuring</span>
+                        </div>
+                        <a href="https://bosscod1.github.io/portfolio/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center w-full justify-center px-4 py-3 border border-gray-300 text-sm font-semibold rounded-xl text-gray-700 bg-white hover:bg-gray-50 hover:border-emerald-500 hover:text-emerald-600 transition-all shadow-sm">
+                            造訪網站 <i class="fas fa-external-link-alt ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 專案 3: NATCP AI 資工營 -->
+                <div class="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 group border-2 border-purple-100 flex flex-col relative transform hover:-translate-y-1">
+                    <div class="absolute -top-3 -right-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg z-10 animate-bounce">
+                        <i class="fas fa-star mr-1"></i> 重點推薦
+                    </div>
+                    <div class="h-52 bg-gradient-to-br from-fuchsia-600 via-purple-700 to-violet-800 flex items-center justify-center text-white relative overflow-hidden rounded-t-2xl">
+                        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
+                        <i class="fas fa-brain text-7xl opacity-50 group-hover:scale-110 transition-transform duration-700 group-hover:rotate-6"></i>
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-2xl font-bold text-gray-900 group-hover:text-purple-700 transition-colors">Alan 的求職網站</h3>
+                        </div>
+                        <div class="text-sm text-purple-600 font-semibold mb-3">清交 NATCP AI 資工營結業專題</div>
+                        <p class="text-gray-600 text-base leading-relaxed mb-6 flex-grow">
+                            以「高中生求職網站」為題，採終端機 (Terminal) 風格介面開發。身為全營唯一導入 AI 功能的組別，我們實作了中英/亮暗切換、極客語氣轉換、文字大戰爭與貓咪 emoji 生成器。更進階串接了綠界 (ECPay) 金流解鎖 AI 聊天分身功能，展現對 Prompt Engineering 與 API 整合的高效掌握。
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="px-3 py-1 bg-purple-50 text-purple-700 border border-purple-200 text-xs font-bold rounded-md">AI API</span>
+                            <span class="px-3 py-1 bg-pink-50 text-pink-700 border border-pink-200 text-xs font-bold rounded-md">ECPay 金流</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-md">Prompt Engineering</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-md">JS</span>
+                        </div>
+                        <a href="https://bosscod1.github.io/NATCP-camp-project/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center w-full justify-center px-4 py-3 border border-transparent text-sm font-bold rounded-xl text-white bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-700 hover:to-fuchsia-700 transition-all shadow-md hover:shadow-lg">
+                            造訪實戰專案 <i class="fas fa-rocket ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="practice-projects" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">微型實作沙盒 (Interactive Sandbox)</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto mt-6 rounded-full"></div>
+                <p class="mt-6 max-w-3xl text-lg text-gray-500 mx-auto leading-relaxed">
+                    除了大型專案，扎實的基礎更是技術成長的基石。以下收錄了我針對 CSS 網格 (Grid)、Flexbox、動畫特效、響應式佈局 (RWD) 以及無障礙網頁設計所做的刻意練習。<br/>
+                    <span class="inline-block mt-3 text-blue-600 bg-blue-50 px-4 py-1.5 rounded-full text-sm font-medium border border-blue-100">
+                        <i class="fas fa-lightbulb mr-1"></i> 提示：在電腦版中，可拖曳中央的分隔線來改變視窗寬度，測試「城市天際線」等專案的響應式特效！
+                    </span>
+                </p>
+            </div>
+
+            <!-- 沙盒主容器 -->
+            <div id="sandbox-container" class="flex flex-col lg:flex-row bg-gray-50 rounded-2xl overflow-hidden shadow-2xl border border-gray-200 relative no-select">
+                
+                <!-- 左側：專案選單 (手機版橫向滑動，電腦版直向滾動) -->
+                <!-- 在手機版給予固定小高度，桌面版給予固定高並允許調整寬度 -->
+                <div id="left-pane" class="w-full lg:w-[35%] flex flex-row lg:flex-col gap-3 p-4 bg-gray-100/50 
+                                           overflow-x-auto lg:overflow-x-hidden lg:overflow-y-auto hide-scrollbar 
+                                           max-h-[220px] lg:max-h-[700px] shrink-0 z-10 relative">
+                    <!-- JavaScript 將動態生成按鈕列表於此 -->
+                </div>
+
+                <!-- 拖曳分隔線 (僅在電腦版 lg 以上顯示) -->
+                <div id="drag-splitter" class="hidden lg:flex w-2 bg-gray-200 hover:bg-blue-500 cursor-col-resize items-center justify-center transition-colors shadow-inner z-20" title="左右拖曳調整寬度">
+                    <div class="flex flex-col gap-1 opacity-50">
+                        <div class="w-0.5 h-1 bg-gray-500 rounded-full"></div>
+                        <div class="w-0.5 h-1 bg-gray-500 rounded-full"></div>
+                        <div class="w-0.5 h-1 bg-gray-500 rounded-full"></div>
+                    </div>
+                </div>
+
+                <!-- 右側：程式碼執行預覽視窗 -->
+                <div id="right-pane" class="w-full flex-1 flex flex-col h-[500px] lg:h-[700px] bg-white min-w-[300px] z-10 relative">
+                    <!-- 用於拖曳時遮罩 iframe，避免滑鼠事件遺失 -->
+                    <div id="iframe-overlay" class="absolute inset-0 bg-transparent z-50 hidden"></div>
+                    
+                    <!-- 模擬瀏覽器標題列 -->
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200 flex items-center justify-between shrink-0">
+                        <div class="flex gap-1.5">
+                            <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                        </div>
+                        <div class="mx-4 bg-white rounded-md px-3 py-1.5 text-xs text-gray-500 flex-grow shadow-sm border border-gray-200 flex items-center gap-2 max-w-md overflow-hidden truncate">
+                            <i class="fas fa-lock text-gray-400"></i>
+                            <span id="browser-url" class="truncate font-mono">local://sandbox/loading</span>
+                        </div>
+                        <div class="text-gray-400 text-xs">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- 專案描述區塊 -->
+                    <div class="px-6 py-4 bg-white border-b border-gray-100 shrink-0">
+                        <h3 id="preview-title" class="text-lg font-bold text-gray-900">載入中...</h3>
+                        <p id="preview-desc" class="text-sm text-gray-500 mt-1.5 leading-relaxed line-clamp-2" title="詳細描述">載入中...</p>
+                    </div>
+
+                    <!-- Iframe 預覽區域 -->
+                    <div class="flex-grow bg-white w-full relative">
+                        <iframe 
+                            id="preview-frame" 
+                            class="absolute inset-0 w-full h-full border-none bg-white"
+                            title="Project Preview"
+                            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                        ></iframe>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 py-12 border-t border-gray-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2">
+                <i class="fas fa-terminal text-gray-400"></i>
+                <span class="text-gray-300 font-semibold tracking-wider">PortfolioHub</span>
+            </div>
+            <p class="text-gray-500 text-sm">
+                &copy; 2026 個人程式作品集 - 專為特殊選才備審設計. All rights reserved.
+            </p>
+            <div class="flex gap-4">
+                <a href="#" class="text-gray-500 hover:text-white transition"><i class="fab fa-github text-xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 資料結構：儲存所有實作沙盒的程式碼專案
+        const practiceData = [
+            {
+                id: 'cat-photo-app',
+                title: 'CatPhotoApp (HTML 語意化基礎)',
+                urlTag: 'cat-photo-app.html',
+                description: '網頁開發的啟蒙練習。透過這個專案，我熟悉了 HTML 的語意化標籤 (semantic tags)、表單建構與媒體元素的正確置入方式。',
+                icon: 'fa-cat',
+                code: `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>CatPhotoApp</title>
+  </head>
+  <body>
+    <main>
+      <h1>CatPhotoApp</h1>
+      <section>
+        <h2>Cat Photos</h2>
+        <p>Everyone loves <a href="https://cdn.freecodecamp.org/curriculum/cat-photo-app/running-cats.jpg">cute cats</a> online!</p>
+        <p>See more <a target="_blank" href="https://freecatphotoapp.com">cat photos</a> in our gallery.</p>
+        <a href="https://freecatphotoapp.com"><img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back."></a>
+      </section>
+      <section>
+        <h2>Cat Lists</h2>
+        <h3>Things cats love:</h3>
+        <ul>
+          <li>catnip</li>
+          <li>laser pointers</li>
+          <li>lasagna</li>
+        </ul>
+        <figure>
+          <img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/lasagna.jpg" alt="A slice of lasagna on a plate.">
+          <figcaption>Cats <em>love</em> lasagna.</figcaption>  
+        </figure>
+        <h3>Top 3 things cats hate:</h3>
+        <ol>
+          <li>flea treatment</li>
+          <li>thunder</li>
+          <li>other cats</li>
+        </ol>
+        <figure>
+          <img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/cats.jpg" alt="Two tabby kittens sleeping together on a couch.">
+          <figcaption>Cats <strong>hate</strong> other cats.</figcaption>  
+        </figure>
+      </section>
+      <section>
+        <h2>Cat Form</h2>
+        <form action="https://freecatphotoapp.com/submit-cat-photo">
+          <fieldset>
+            <legend>Is your cat an indoor or outdoor cat?</legend>
+            <label><input id="indoor" type="radio" name="indoor-outdoor" value="indoor" checked> Indoor</label>
+            <label><input id="outdoor" type="radio" name="indoor-outdoor" value="outdoor"> Outdoor</label>
+          </fieldset>
+          <fieldset>
+            <legend>What's your cat's personality?</legend>
+            <input id="loving" type="checkbox" name="personality" value="loving" checked> <label for="loving">Loving</label>
+            <input id="lazy" type="checkbox" name="personality" value="lazy"> <label for="lazy">Lazy</label>
+            <input id="energetic" type="checkbox" name="personality" value="energetic"> <label for="energetic">Energetic</label>
+          </fieldset>
+          <input type="text" name="catphotourl" placeholder="cat photo URL" required>
+          <button type="submit">Submit</button>
+        </form>
+      </section>
+    </main>
+    <footer>
+      <p>
+        No Copyright - <a href="https://www.freecodecamp.org">freeCodeCamp.org</a>
+      </p>
+    </footer>
+  </body>
+</html>`
+            },
+            {
+                id: 'cafe-menu',
+                title: 'Cafe Menu (CSS 樣式設計)',
+                urlTag: 'cafe-menu.html',
+                description: 'CSS 排版的初體驗。學習使用類別 (Class)、ID 選擇器來精確套用樣式，並掌握字體、顏色、背景圖與內外邊距的視覺調校。',
+                icon: 'fa-mug-hot',
+                code: `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cafe Menu</title>
+    <style>
+      body {
+        background-image: url(https://cdn.freecodecamp.org/curriculum/css-cafe/beans.jpg);
+        font-family: sans-serif;
+        padding: 20px;
+      }
+      h1 { font-size: 40px; margin-top: 0; margin-bottom: 15px; }
+      h2 { font-size: 30px; }
+      .established { font-style: italic; }
+      h1, h2, p { text-align: center; }
+      .menu { width: 80%; background-color: burlywood; margin-left: auto; margin-right: auto; padding: 20px; max-width: 500px; }
+      img { display: block; margin-left: auto; margin-right: auto; margin-top: -25px; }
+      hr { height: 2px; background-color: brown; border-color: brown; }
+      .bottom-line { margin-top: 25px; }
+      h1, h2 { font-family: Impact, serif; }
+      .item p { display: inline-block; margin-top: 5px; margin-bottom: 5px; font-size: 18px; }
+      .flavor, .dessert { text-align: left; width: 75%; }
+      .price { text-align: right; width: 25%; }
+      footer { font-size: 14px; }
+      .address { margin-bottom: 5px; }
+      a { color: black; }
+      a:visited { color: black; }
+      a:hover { color: brown; }
+      a:active { color: brown; }
+    </style>
+  </head>
+  <body>
+    <div class="menu">
+      <main>
+        <h1>CAMPER CAFE</h1>
+        <p class="established">Est. 2020</p>
+        <hr>
+        <section>
+          <h2>Coffee</h2>
+          <img src="https://cdn.freecodecamp.org/curriculum/css-cafe/coffee.jpg" alt="coffee icon"/>
+          <article class="item">
+            <p class="flavor">French Vanilla</p><p class="price">3.00</p>
+          </article>
+          <article class="item">
+            <p class="flavor">Caramel Macchiato</p><p class="price">3.75</p>
+          </article>
+          <article class="item">
+            <p class="flavor">Pumpkin Spice</p><p class="price">3.50</p>
+          </article>
+          <article class="item">
+            <p class="flavor">Hazelnut</p><p class="price">4.00</p>
+          </article>
+          <article class="item">
+            <p class="flavor">Mocha</p><p class="price">4.50</p>
+          </article>
+        </section>
+        <section>
+          <h2>Desserts</h2>
+          <img src="https://cdn.freecodecamp.org/curriculum/css-cafe/pie.jpg" alt="pie icon"/>
+          <article class="item">
+            <p class="dessert">Donut</p><p class="price">1.50</p>
+          </article>
+          <article class="item">
+            <p class="dessert">Cherry Pie</p><p class="price">2.75</p>
+          </article>
+          <article class="item">
+            <p class="dessert">Cheesecake</p><p class="price">3.00</p>
+          </article>
+          <article class="item">
+            <p class="dessert">Cinnamon Roll</p><p class="price">2.50</p>
+          </article>
+        </section>
+      </main>
+      <hr class="bottom-line">
+      <footer>
+        <p><a href="https://www.freecodecamp.org" target="_blank">Visit our website</a></p>
+        <p class="address">123 Free Code Camp Drive</p>
+      </footer>
+    </div>
+  </body>
+</html>`
+            },
+            {
+                id: 'color-markers',
+                title: 'CSS Color Markers (進階漸層)',
+                urlTag: 'color-markers.html',
+                description: '探索 CSS 色彩設定的奧秘。熟練運用 RGB、HEX 與 HSL 格式，並實作線性漸層 (linear-gradient) 與陰影 (box-shadow) 打造立體視覺效果。',
+                icon: 'fa-highlighter',
+                code: `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colored Markers</title>
+    <style>
+      h1 { text-align: center; }
+      .container { background-color: rgb(255, 255, 255); padding: 10px 0; }
+      .marker { width: 200px; height: 25px; margin: 10px auto; }
+      .cap { width: 60px; height: 25px; }
+      .sleeve { width: 110px; height: 25px; background-color: rgba(255, 255, 255, 0.5); border-left: 10px double rgba(0, 0, 0, 0.75); }
+      .cap, .sleeve { display: inline-block; }
+      .red { background: linear-gradient(rgb(122, 74, 14), rgb(245, 62, 113), rgb(162, 27, 27)); box-shadow: 0 0 20px 0 rgba(83, 14, 14, 0.8); }
+      .green { background: linear-gradient(#55680D, #71F53E, #116C31); box-shadow: 0 0 20px 0 #3B7E20CC; }
+      .blue { background: linear-gradient(hsl(186, 76%, 16%), hsl(223, 90%, 60%), hsl(240, 56%, 42%)); box-shadow: 0 0 20px 0 blue; }
+    </style>
+  </head>
+  <body>
+    <h1>CSS Color Markers</h1>
+    <div class="container">
+      <div class="marker red"><div class="cap"></div><div class="sleeve"></div></div>
+      <div class="marker green"><div class="cap"></div><div class="sleeve"></div></div>
+      <div class="marker blue"><div class="cap"></div><div class="sleeve"></div></div>
+    </div>
+  </body>
+</html>`
+            },
+            {
+                id: 'registration-form',
+                title: 'Registration Form (表單設計)',
+                urlTag: 'registration-form.html',
+                description: '建構互動式網頁的關鍵組件。熟練操作各類表單元素 (radio, checkbox, select)，並為其套用一致且專業的暗色系質感主題。',
+                icon: 'fa-clipboard-list',
+                code: `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <style>
+      body { width: 100%; height: 100vh; margin: 0; background-color: #1b1b32; color: #f5f6f7; font-family: Tahoma; font-size: 16px; }
+      h1, p { margin: 1em auto; text-align: center; }
+      form { width: 60vw; max-width: 500px; min-width: 300px; margin: 0 auto; padding-bottom: 2em; }
+      fieldset { border: none; padding: 2rem 0; border-bottom: 3px solid #3b3b4f; }
+      fieldset:last-of-type { border-bottom: none; }
+      label { display: block; margin: 0.5rem 0; }
+      input, textarea, select { margin: 10px 0 0 0; width: 100%; min-height: 2em; }
+      input, textarea { background-color: #0a0a23; border: 1px solid #0a0a23; color: #ffffff; }
+      .inline { width: unset; margin: 0 0.5em 0 0; vertical-align: middle; }
+      input[type="submit"] { display: block; width: 60%; margin: 1em auto; height: 2em; font-size: 1.1rem; background-color: #3b3b4f; border-color: white; min-width: 300px; }
+      input[type="file"] { padding: 1px 2px; }
+      a { color: #dfdfe2; }
+    </style>
+  </head>
+  <body>
+    <h1>Registration Form</h1>
+    <p>Please fill out this form with the required information</p>
+    <form method="post" action='https://register-demo.freecodecamp.org'>
+      <fieldset>
+        <label for="first-name">Enter Your First Name: <input id="first-name" name="first-name" type="text" required /></label>
+        <label for="last-name">Enter Your Last Name: <input id="last-name" name="last-name" type="text" required /></label>
+        <label for="email">Enter Your Email: <input id="email" name="email" type="email" required /></label>
+        <label for="new-password">Create a New Password: <input id="new-password" name="new-password" type="password" pattern="[a-z0-5]{8,}" required /></label>
+      </fieldset>
+      <fieldset>
+        <legend>Account type (required)</legend>
+        <label for="personal-account"><input id="personal-account" type="radio" name="account-type" class="inline" checked /> Personal</label>
+        <label for="business-account"><input id="business-account" type="radio" name="account-type" class="inline" /> Business</label>
+      </fieldset>
+      <fieldset>
+        <label for="profile-picture">Upload a profile picture: <input id="profile-picture" type="file" name="file" /></label>
+        <label for="age">Input your age (years): <input id="age" type="number" name="age" min="13" max="120" /></label>
+        <label for="referrer">How did you hear about us?
+          <select id="referrer" name="referrer">
+            <option value="">(select one)</option>
+            <option value="1">freeCodeCamp News</option>
+            <option value="2">freeCodeCamp YouTube Channel</option>
+            <option value="3">Other</option>
+          </select>
+        </label>
+        <label for="bio">Provide a bio:
+          <textarea id="bio" name="bio" rows="3" cols="30" placeholder="I like coding..."></textarea>
+        </label>
+      </fieldset>
+      <label for="terms-and-conditions">
+        <input class="inline" id="terms-and-conditions" type="checkbox" required name="terms-and-conditions" /> I accept the <a href="#">terms and conditions</a>
+      </label>
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>`
+            },
+            {
+                id: 'rothko-painting',
+                title: 'Rothko Painting (CSS 繪圖與濾鏡)',
+                urlTag: 'rothko-painting.html',
+                description: '跳脫框架的純代碼藝術 (CSS Art) 創作。巧妙運用 CSS 的 filter 模糊濾鏡、多重陰影以及 transform 微幅旋轉，模擬出真實畫作邊緣的筆觸與斑駁感。',
+                icon: 'fa-palette',
+                code: `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Rothko Painting</title>
+    <style>
+      .canvas { width: 500px; height: 600px; background-color: #4d0f00; overflow: hidden; filter: blur(2px); }
+      .frame { border: 50px solid black; width: 500px; padding: 50px; margin: 20px auto; }
+      .one { width: 425px; height: 150px; background-color: #efb762; margin: 20px auto; box-shadow: 0 0 3px 3px #efb762; border-radius: 9px; transform: rotate(-0.6deg); }
+      .two { width: 475px; height: 200px; background-color: #8f0401; margin: 0 auto 20px; box-shadow: 0 0 3px 3px #8f0401; border-radius: 8px 10px; transform: rotate(0.4deg); }
+      .one, .two { filter: blur(1px); }
+      .three { width: 91%; height: 28%; background-color: #b20403; margin: auto; filter: blur(2px); box-shadow: 0 0 5px 5px #b20403; border-radius: 30px 25px 60px 12px; transform: rotate(-0.2deg); }
+    </style>
+  </head>
+  <body>
+    <div class="frame">
+      <div class="canvas">
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
+      </div>
+    </div>
+  </body>
+</html>`
+            },
+            {
+                id: 'photo-gallery',
+                title: 'Photo Gallery (Flexbox 排版)',
+                urlTag: 'photo-gallery.html',
+                description: '現代響應式網頁的核心基礎。實踐 CSS Flexbox 彈性盒子模型，設定自動換行與間距均分，打造出能適應任何設備寬度的流暢照片牆。',
+                icon: 'fa-images',
+                code: `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: sans-serif; background: #f5f6f7; }
+      .header { text-align: center; text-transform: uppercase; padding: 32px; background-color: #0a0a23; color: #fff; border-bottom: 4px solid #fdb347; }
+      .gallery { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; gap: 16px; max-width: 1400px; margin: 0 auto; padding: 20px 10px; }
+      .gallery img { width: 100%; max-width: 350px; height: 300px; object-fit: cover; border-radius: 10px; }
+      .gallery::after { content: ""; width: 350px; }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <h1>css flexbox photo gallery</h1>
+    </header>
+    <div class="gallery">
+      <img src="https://cdn.freecodecamp.org/curriculum/css-photo-gallery/1.jpg" alt="cat 1">
+      <img src="https://cdn.freecodecamp.org/curriculum/css-photo-gallery/2.jpg" alt="cat 2">
+      <img src="https://cdn.freecodecamp.org/curriculum/css-photo-gallery/3.jpg" alt="cat 3">
+      <img src="https://cdn.freecodecamp.org/curriculum/css-photo-gallery/4.jpg" alt="cat 4">
+      <img src="https://cdn.freecodecamp.org/curriculum/css-photo-gallery/5.jpg" alt="cat 5">
+      <img src="https://cdn.freecodecamp.org/curriculum/css-photo-gallery/6.jpg" alt="cat 6">
+      <img src="https://cdn.freecodecamp.org/curriculum/css-photo-gallery/7.jpg" alt="cat 7">
+      <img src="https://cdn.freecodecamp.org/curriculum/css-photo-gallery/8.jpg" alt="cat 8">
+      <img src="https://cdn.freecodecamp.org/curriculum/css-photo-gallery/9.jpg" alt="cat 9">
+    </div>
+  </body>
+</html>`
+            },
+            {
+                id: 'nutrition-label',
+                title: 'Nutrition Label (微距排版與 Typography)',
+                urlTag: 'nutrition-label.html',
+                description: '對細節的極致追求。精準控制字級粗細、邊界間距與底線樣式，完美復刻真實生活的營養標籤，展現處理高密度資訊排版的穩定性。',
+                icon: 'fa-receipt',
+                code: `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nutrition Label</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    html { font-size: 16px; }
+    body { font-family: 'Open Sans', sans-serif; }
+    .label { border: 2px solid black; width: 270px; margin: 20px auto; padding: 0 7px; }
+    header h1 { text-align: center; margin: -4px 0; letter-spacing: 0.15px }
+    p { margin: 0; display: flex; justify-content: space-between; }
+    .divider { border-bottom: 1px solid #888989; margin: 2px 0; }
+    .bold { font-weight: 800; }
+    .large { height: 10px; }
+    .large, .medium { background-color: black; border: 0; }
+    .medium { height: 5px; }
+    .small-text { font-size: 0.85rem; }
+    .calories-info { display: flex; justify-content: space-between; align-items: flex-end; }
+    .calories-info h2 { margin: 0; }
+    .left-container p { margin: -5px -2px; font-size: 2em; font-weight: 700; }
+    .calories-info span { margin: -7px -2px; font-size: 2.4em; font-weight: 700; }
+    .right { justify-content: flex-end; }
+    .indent { margin-left: 1em; }
+    .double-indent { margin-left: 2em; }
+    .daily-value p:not(.no-divider) { border-bottom: 1px solid #888989; }
+    .note { font-size: 0.6rem; margin: 5px 0; padding: 0 8px; text-indent: -8px; }
+  </style>
+</head>
+<body>
+  <div class="label">
+    <header>
+      <h1 class="bold">Nutrition Facts</h1>
+      <div class="divider"></div>
+      <p>8 servings per container</p>
+      <p class="bold">Serving size <span>2/3 cup (55g)</span></p>
+    </header>
+    <div class="divider large"></div>
+    <div class="calories-info">
+      <div class="left-container">
+        <h2 class="bold small-text">Amount per serving</h2>
+        <p>Calories</p>
+      </div>
+      <span>230</span>
+    </div>
+    <div class="divider medium"></div>
+    <div class="daily-value small-text">
+      <p class="bold right no-divider">% Daily Value *</p>
+      <div class="divider"></div>
+      <p><span><span class="bold">Total Fat</span> 8g</span> <span class="bold">10%</span></p>
+      <p class="indent no-divider">Saturated Fat 1g <span class="bold">5%</span></p>
+      <div class="divider"></div>
+      <p class="indent no-divider"><span><i>Trans</i> Fat 0g</span></p>
+      <div class="divider"></div>
+      <p><span><span class="bold">Cholesterol</span> 0mg</span> <span class="bold">0%</span></p>
+      <p><span><span class="bold">Sodium</span> 160mg</span> <span class="bold">7%</span></p>
+      <p><span><span class="bold">Total Carbohydrate</span> 37g</span> <span class="bold">13%</span></p>
+      <p class="indent no-divider">Dietary Fiber 4g</p>
+      <div class="divider"></div>
+      <p class="indent no-divider">Total Sugars 12g</p>
+      <div class="divider double-indent"></div>
+      <p class="double-indent no-divider">Includes 10g Added Sugars <span class="bold">20%</span></p>
+      <div class="divider"></div>
+      <p class="no-divider"><span><span class="bold">Protein</span> 3g</span></p>
+      <div class="divider large"></div>
+      <p>Vitamin D 2mcg <span>10%</span></p>
+      <p>Calcium 260mg <span>20%</span></p>
+      <p>Iron 8mg <span>45%</span></p>
+      <p class="no-divider">Potassium 235mg <span>6%</span></p>
+    </div>
+    <div class="divider medium"></div>
+    <p class="note">The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet. 2,000 calories a day is used for general nutrition advice.</p>
+  </div>
+</body>
+</html>`
+            },
+            {
+                id: 'accessibility-quiz',
+                title: 'Accessibility Quiz (無障礙網頁設計)',
+                urlTag: 'accessibility-quiz.html',
+                description: '現代工程師不可或缺的素養 (A11y)。實作語意化標籤、aria 屬性與 Screen Reader 專用類別，確保視覺障礙者也能友善使用，體現科技的人文關懷。',
+                icon: 'fa-universal-access',
+                code: `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accessibility Quiz</title>
+    <style>
+      @media (prefers-reduced-motion: no-preference) { * { scroll-behavior: smooth; } }
+      body { background: #f5f6f7; color: #1b1b32; font-family: Helvetica; margin: 0; }
+      header { width: 100%; height: 50px; background-color: #1b1b32; display: flex; justify-content: space-between; align-items: center; top: 0; }
+      #logo { width: max(10rem, 18vw); background-color: #0a0a23; aspect-ratio: 35 / 4; padding: 0.4rem; }
+      h1 { color: #f1be32; font-size: min(5vw, 1.2em); text-align: center; }
+      nav { width: 50%; max-width: 300px; height: 50px; }
+      nav > ul { display: flex; justify-content: space-evenly; flex-wrap: wrap; align-items: center; padding-inline-start: 0; margin-block: 0; height: 100%; }
+      nav > ul > li { color: #dfdfe2; margin: 0 0.2rem; padding: 0.2rem; display: block; }
+      nav > ul > li:hover { background-color: #dfdfe2; color: #1b1b32; cursor: pointer; }
+      li > a { color: inherit; text-decoration: none; }
+      main { padding-top: 50px; }
+      section { width: 80%; margin: 0 auto 10px auto; max-width: 600px; }
+      h1, h2 { font-family: Verdana, Tahoma; }
+      h2 { border-bottom: 4px solid #dfdfe2; margin-top: 0px; padding-top: 60px; }
+      .info { padding: 10px 0 0 5px; }
+      .formrow { margin-top: 30px; padding: 0px 15px; }
+      input { font-size: 1rem; }
+      .info label, .info input { display: inline-block; }
+      .info input { width: 50%; text-align: left; }
+      .info label { width: 10%; min-width: 55px; text-align: right; }
+      .question-block { text-align: left; display: block; width: 100%; margin-top: 20px; padding-top: 5px; }
+      h3 { margin-top: 5px; padding-left: 15px; font-size: 1.375rem; }
+      h3::before { content: "Question #"; }
+      .question { border: none; padding-bottom: 0; }
+      .answers-list { list-style: none; padding: 0; }
+      button { display: block; margin: 40px auto; width: 40%; padding: 15px; font-size: 1.438rem; background: #d0d0d5; border: 3px solid #3b3b4f; }
+      footer { background-color: #2a2a40; display: flex; justify-content: center; }
+      footer, footer a { color: #dfdfe2; }
+      address { text-align: center; padding: 0.3em; }
+      .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); clip-path: inset(50%); white-space: nowrap; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img id="logo" alt="freeCodeCamp" src="https://cdn.freecodecamp.org/platform/universal/fcc_primary.svg">
+      <h1>HTML/CSS Quiz</h1>
+      <nav><ul><li><a href="#student-info">INFO</a></li><li><a href="#html-questions">HTML</a></li><li><a href="#css-questions">CSS</a></li></ul></nav>
+    </header>
+    <main>
+      <form method="post" action="#">
+        <section role="region" aria-labelledby="student-info">
+          <h2 id="student-info">Student Info</h2>
+          <div class="info"><label for="student-name">Name:</label><input type="text" name="student-name" id="student-name" /></div>
+        </section>
+        <section role="region" aria-labelledby="html-questions">
+          <h2 id="html-questions">HTML</h2>
+          <div class="question-block">
+            <h3><span class="sr-only">Question</span>1</h3>
+            <fieldset class="question" name="html-question-one">
+              <legend>The legend element represents a caption for its parent fieldset element</legend>
+              <ul class="answers-list">
+                <li><label for="q1-a1"><input type="radio" id="q1-a1" name="q1" value="true" /> True</label></li>
+                <li><label for="q1-a2"><input type="radio" id="q1-a2" name="q1" value="false" /> False</label></li>
+              </ul>
+            </fieldset>
+          </div>
+        </section>
+        <button type="submit">Send</button>
+      </form>
+    </main>
+  </body>
+</html>`
+            },
+            {
+                id: 'balance-sheet',
+                title: 'Balance Sheet (表格進階排版)',
+                urlTag: 'balance-sheet.html',
+                description: '解決棘手的 Table 排版難題。巧用 position: sticky 固定表頭，搭配 calc() 計算寬度與 CSS 進階選擇器繪製專業的財務報表結構。',
+                icon: 'fa-file-invoice-dollar',
+                code: `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balance Sheet</title>
+    <style>
+      span[class~="sr-only"] { border: 0 !important; clip: rect(1px, 1px, 1px, 1px) !important; clip-path: inset(50%) !important; height: 1px !important; width: 1px !important; position: absolute !important; overflow: hidden !important; white-space: nowrap !important; padding: 0 !important; margin: -1px !important; }
+      html { box-sizing: border-box; }
+      body { font-family: sans-serif; color: #0a0a23; }
+      h1 { max-width: 37.25rem; margin: 0 auto; padding: 1.5rem 1.25rem; }
+      h1 .flex { display: flex; flex-direction: column-reverse; gap: 1rem; }
+      h1 .flex span:first-of-type { font-size: 0.7em; }
+      h1 .flex span:last-of-type { font-size: 1.2em; }
+      section { max-width: 40rem; margin: 0 auto; border: 2px solid #d0d0d5; }
+      #years { display: flex; justify-content: flex-end; position: sticky; z-index: 999; top: 0; background: #0a0a23; color: #fff; padding: 0.5rem calc(1.25rem + 2px) 0.5rem 0; margin: 0 -2px; }
+      #years span[class] { font-weight: bold; width: 4.5rem; text-align: right; }
+      .table-wrap { padding: 0 0.75rem 1.5rem 0.75rem; }
+      table { border-collapse: collapse; border: 0; width: 100%; position: relative; margin-top: 3rem; }
+      table caption { color: #356eaf; font-size: 1.3em; font-weight: normal; position: absolute; top: -2.25rem; left: 0.5rem; }
+      tbody td { width: 100vw; min-width: 4rem; max-width: 4rem; }
+      tbody th { width: calc(100% - 12rem); }
+      tr[class="total"] { border-bottom: 4px double #0a0a23; font-weight: bold; }
+      tr[class="total"] th { text-align: left; padding: 0.5rem 0 0.25rem 0.5rem; }
+      tr.total td { text-align: right; padding: 0 0.25rem; }
+      tr.total td:nth-of-type(3) { padding-right: 0.5rem; }
+      tr.total:hover { background-color: #99c9ff; }
+      td.current { font-style: italic; }
+      tr.data { background-image: linear-gradient(to bottom, #dfdfe2 1.845rem, white 1.845rem); }
+      tr.data th { text-align: left; padding-top: 0.3rem; padding-left: 0.5rem; }
+      tr.data th .description { display: block; font-weight: normal; font-style: italic; padding: 1rem 0 0.75rem; margin-right: -13.5rem; }
+      tr.data td { vertical-align: top; padding: 0.3rem 0.25rem 0; text-align: right; }
+      tr.data td:last-of-type { padding-right: 0.5rem; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section>
+        <h1><span class="flex"><span>AcmeWidgetCorp</span><span>Balance Sheet</span></span></h1>
+        <div id="years" aria-hidden="true"><span class="year">2019</span><span class="year">2020</span><span class="year">2021</span></div>
+        <div class="table-wrap">
+          <table>
+            <caption>Assets</caption>
+            <thead><tr><td></td><th><span class="sr-only year">2019</span></th><th><span class="sr-only year">2020</span></th><th class="current"><span class="sr-only year">2021</span></th></tr></thead>
+            <tbody>
+              <tr class="data"><th>Cash <span class="description">This is the cash we currently have on hand.</span></th><td>$25</td><td>$30</td><td class="current">$28</td></tr>
+              <tr class="total"><th>Total <span class="sr-only">Assets</span></th><td>$579</td><td>$736</td><td class="current">$809</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>`
+            },
+            {
+                id: 'cat-painting',
+                title: 'Cat Painting (純 CSS 繪圖極限)',
+                urlTag: 'cat-painting.html',
+                description: '摒棄圖片素材，單憑對幾何空間、絕對定位與 border-radius 的深刻理解，以純代碼一點一滴刻劃出栩栩如生的貓咪頭像。',
+                icon: 'fa-paw',
+                code: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>fCC Cat Painting</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { background-color: #c9d2fc; }
+      .cat-head { position: absolute; right: 0; left: 0; top: 0; bottom: 0; margin: auto; background: linear-gradient(#5e5e5e 85%, #45454f 100%); width: 205px; height: 180px; border: 1px solid #000; border-radius: 46%; }
+      .cat-left-ear { position: absolute; top: -26px; left: -31px; z-index: 1; border-top-left-radius: 90px; border-top-right-radius: 10px; transform: rotate(-45deg); border-left: 35px solid transparent; border-right: 35px solid transparent; border-bottom: 70px solid #5e5e5e; }
+      .cat-right-ear { position: absolute; top: -26px; left: 163px; z-index: 1; transform: rotate(45deg); border-top-left-radius: 90px; border-top-right-radius: 10px; border-left: 35px solid transparent; border-right: 35px solid transparent; border-bottom: 70px solid #5e5e5e; }
+      .cat-left-inner-ear { position: absolute; top: 22px; left: -20px; border-top-left-radius: 90px; border-top-right-radius: 10px; border-bottom-right-radius: 40%; border-bottom-left-radius: 40%; border-left: 20px solid transparent; border-right: 20px solid transparent; border-bottom: 40px solid #3b3b4f; }
+      .cat-right-inner-ear { position: absolute; top: 22px; left: -20px; border-top-left-radius: 90px; border-top-right-radius: 10px; border-bottom-right-radius: 40%; border-bottom-left-radius: 40%; border-left: 20px solid transparent; border-right: 20px solid transparent; border-bottom: 40px solid #3b3b4f; }
+      .cat-left-eye { position: absolute; top: 54px; left: 39px; border-radius: 60%; transform: rotate(25deg); width: 30px; height: 40px; background-color: #000; }
+      .cat-right-eye { position: absolute; top: 54px; left: 134px; border-radius: 60%; transform: rotate(-25deg); width: 30px; height: 40px; background-color: #000; }
+      .cat-left-inner-eye { position: absolute; top: 8px; left: 2px; width: 10px; height: 20px; transform: rotate(10deg); background-color: #fff; border-radius: 60%; }
+      .cat-right-inner-eye { position: absolute; top: 8px; left: 18px; transform: rotate(-5deg); width: 10px; height: 20px; background-color: #fff; border-radius: 60%; }
+      .cat-nose { position: absolute; top: 108px; left: 85px; border-top-left-radius: 50%; border-bottom-right-radius: 50%; border-bottom-left-radius: 50%; transform: rotate(180deg); border-left: 15px solid transparent; border-right: 15px solid transparent; border-bottom: 20px solid #442c2c; }
+      .cat-mouth div { width: 30px; height: 50px; border: 2px solid #000; border-radius: 190%/190px 150px 0 0; border-color: black transparent transparent transparent; }
+      .cat-mouth-line-left { position: absolute; top: 88px; left: 74px; transform: rotate(170deg); }
+      .cat-mouth-line-right { position: absolute; top: 88px; left: 91px; transform: rotate(165deg); }
+      .cat-whiskers-left div { width: 40px; height: 1px; background-color: #000; }
+      .cat-whiskers-right div { width: 40px; height: 1px; background-color: #000; }
+      .cat-whisker-left-top { position: absolute; top: 120px; left: 52px; transform: rotate(10deg); }
+      .cat-whisker-left-middle { position: absolute; top: 127px; left: 52px; transform: rotate(3deg); }
+      .cat-whisker-left-bottom { position: absolute; top: 134px; left: 52px; transform: rotate(-3deg); }
+      .cat-whisker-right-top { position: absolute; top: 120px; left: 109px; transform: rotate(-10deg); }
+      .cat-whisker-right-middle { position: absolute; top: 127px; left: 109px; transform: rotate(-3deg); }
+      .cat-whisker-right-bottom { position: absolute; top: 134px; left: 109px; transform: rotate(3deg); }
+    </style>
+</head>
+<body>
+    <main>
+      <div class="cat-head">
+        <div class="cat-ears"><div class="cat-left-ear"><div class="cat-left-inner-ear"></div></div><div class="cat-right-ear"><div class="cat-right-inner-ear"></div></div></div>
+        <div class="cat-eyes"><div class="cat-left-eye"><div class="cat-left-inner-eye"></div></div><div class="cat-right-eye"><div class="cat-right-inner-eye"></div></div></div>
+        <div class="cat-nose"></div>
+        <div class="cat-mouth"><div class="cat-mouth-line-left"></div><div class="cat-mouth-line-right"></div></div>
+        <div class="cat-whiskers">
+          <div class="cat-whiskers-left"><div class="cat-whisker-left-top"></div><div class="cat-whisker-left-middle"></div><div class="cat-whisker-left-bottom"></div></div>
+          <div class="cat-whiskers-right"><div class="cat-whisker-right-top"></div><div class="cat-whisker-right-middle"></div><div class="cat-whisker-right-bottom"></div></div>
+        </div>
+      </div>
+    </main>
+</body>
+</html>`
+            },
+            {
+                id: 'piano',
+                title: 'Piano (完美響應式元件)',
+                urlTag: 'piano.html',
+                description: '現代網站必備的 RWD 觀念。透過 Media Query 自動適配螢幕寬度，並活用 ::after 偽元素優雅地疊加鋼琴黑鍵，大幅精簡 DOM 結構。',
+                icon: 'fa-music',
+                code: `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Piano</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      html { box-sizing: border-box; }
+      *, *::before, *::after { box-sizing: inherit; }
+      #piano { background-color: #00471b; width: 992px; height: 290px; margin: 80px auto; padding: 90px 20px 0 20px; position: relative; border-radius: 10px; }
+      .keys { background-color: #040404; width: 949px; height: 180px; padding-left: 2px; overflow: hidden; }
+      .key { background-color: #ffffff; position: relative; width: 41px; height: 175px; margin: 2px; float: left; border-radius: 0 0 3px 3px; }
+      .key.black--key::after { background-color: #1d1e22; content: ""; position: absolute; left: -18px; width: 32px; height: 100px; border-radius: 0 0 3px 3px; }
+      .logo { width: 200px; position: absolute; top: 23px; }
+      @media (max-width: 768px) { #piano { width: 358px; } .keys { width: 318px; } .logo { width: 150px; } }
+      @media (max-width: 1199px) and (min-width: 769px) { #piano { width: 675px; } .keys { width: 633px; } }
+    </style>
+  </head>
+  <body>
+    <div id="piano">
+      <img class="logo" src="https://cdn.freecodecamp.org/platform/universal/fcc_primary.svg" alt="logo" />
+      <div class="keys">
+        <div class="key"></div><div class="key black--key"></div><div class="key black--key"></div><div class="key"></div><div class="key black--key"></div><div class="key black--key"></div><div class="key black--key"></div>
+        <div class="key"></div><div class="key black--key"></div><div class="key black--key"></div><div class="key"></div><div class="key black--key"></div><div class="key black--key"></div><div class="key black--key"></div>
+        <div class="key"></div><div class="key black--key"></div><div class="key black--key"></div><div class="key"></div><div class="key black--key"></div><div class="key black--key"></div><div class="key black--key"></div>
+      </div>
+    </div>
+  </body>
+</html>`
+            },
+            {
+                id: 'city-skyline',
+                title: 'City Skyline (動態變數與日夜切換)',
+                urlTag: 'city-skyline.html',
+                description: '請拖曳畫面中線測試！此專案展示了強大的 CSS 變數 (:root) 管理。不僅用多重漸層堆疊出城市風貌，更藉由視窗大小變化觸發 Media Query 瞬間切換日夜景。',
+                icon: 'fa-city',
+                code: `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>City Skyline</title>
+    <style>
+      :root { --building-color1: #aa80ff; --building-color2: #66cc99; --building-color3: #cc6699; --building-color4: #538cc6; --window-color1: #bb99ff; --window-color2: #8cd9b3; --window-color3: #d98cb3; --window-color4: #8cb3d9; }
+      * { box-sizing: border-box; }
+      body { height: 100vh; margin: 0; overflow: hidden; }
+      .background-buildings, .foreground-buildings { width: 100%; height: 100%; display: flex; align-items: flex-end; justify-content: space-evenly; position: absolute; top: 0; }
+      .building-wrap { display: flex; flex-direction: column; align-items: center; }
+      .window-wrap { display: flex; align-items: center; justify-content: space-evenly; }
+      .sky { background: radial-gradient(closest-corner circle at 15% 15%, #ffcf33, #ffcf33 20%, #ffff66 21%, #bbeeff 100%); transition: background 0.5s ease; }
+      .bb1 { width: 10%; height: 70%; } .bb1a { width: 70%; } .bb1b { width: 80%; } .bb1c { width: 90%; }
+      .bb1d { width: 100%; height: 70%; background: linear-gradient(var(--building-color1) 50%, var(--window-color1)); }
+      .bb1-window { height: 10%; background: linear-gradient(var(--building-color1), var(--window-color1)); }
+      .bb2 { width: 10%; height: 50%; }
+      .bb2a { border-bottom: 5vh solid var(--building-color2); border-left: 5vw solid transparent; border-right: 5vw solid transparent; }
+      .bb2b { width: 100%; height: 100%; background: repeating-linear-gradient(var(--building-color2), var(--building-color2) 6%, var(--window-color2) 6%, var(--window-color2) 9%); }
+      .bb3 { width: 10%; height: 55%; background: repeating-linear-gradient(90deg, var(--building-color3), var(--building-color3), var(--window-color3) 15%); }
+      .bb4 { width: 11%; height: 58%; } .bb4a { width: 3%; height: 10%; background-color: var(--building-color4); } .bb4b { width: 80%; height: 5%; background-color: var(--building-color4); } .bb4c { width: 100%; height: 85%; background-color: var(--building-color4); }
+      .bb4-window { width: 18%; height: 90%; background-color: var(--window-color4); }
+      .fb1 { width: 10%; height: 60%; } .fb1a { border-bottom: 7vh solid var(--building-color4); border-left: 2vw solid transparent; border-right: 2vw solid transparent; } .fb1b { width: 60%; height: 10%; background-color: var(--building-color4); }
+      .fb1c { width: 100%; height: 80%; background: repeating-linear-gradient(90deg, var(--building-color4), var(--building-color4) 10%, transparent 10%, transparent 15%), repeating-linear-gradient(var(--building-color4), var(--building-color4) 10%, var(--window-color4) 10%, var(--window-color4) 90%); }
+      .fb2 { width: 10%; height: 40%; } .fb2a { width: 100%; border-bottom: 10vh solid var(--building-color3); border-left: 1vw solid transparent; border-right: 1vw solid transparent; } .fb2b { width: 100%; height: 75%; background-color: var(--building-color3); }
+      .fb2-window { width: 22%; height: 100%; background-color: var(--window-color3); }
+      .fb3 { width: 10%; height: 35%; } .fb3a { width: 80%; height: 15%; background-color: var(--building-color1); } .fb3b { width: 100%; height: 35%; background-color: var(--building-color1); }
+      .fb3-window { width: 25%; height: 80%; background-color: var(--window-color1); }
+      .fb4 { width: 8%; height: 45%; position: relative; left: 10%; } .fb4a { border-top: 5vh solid transparent; border-left: 8vw solid var(--building-color1); } .fb4b { width: 100%; height: 89%; background-color: var(--building-color1); display: flex; flex-wrap: wrap; }
+      .fb4-window { width: 30%; height: 10%; border-radius: 50%; background-color: var(--window-color1); margin: 10%; }
+      .fb5 { width: 10%; height: 33%; position: relative; right: 10%; background: repeating-linear-gradient(var(--building-color2), var(--building-color2) 5%, transparent 5%, transparent 10%), repeating-linear-gradient(90deg, var(--building-color2), var(--building-color2) 12%, var(--window-color2) 12%, var(--window-color2) 44%); }
+      .fb6 { width: 9%; height: 38%; background: repeating-linear-gradient(90deg, var(--building-color3), var(--building-color3) 10%, transparent 10%, transparent 30%), repeating-linear-gradient(var(--building-color3), var(--building-color3) 10%, var(--window-color3) 10%, var(--window-color3) 30%); }
+      
+      @media (max-width: 1000px) {
+        :root { --building-color1: #000; --building-color2: #000; --building-color3: #000; --building-color4: #000; --window-color1: #777; --window-color2: #777; --window-color3: #777; --window-color4: #777; }
+        .sky { background: radial-gradient(closest-corner circle at 15% 15%, #ccc, #ccc 20%, #445 21%, #223 100%); }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background-buildings sky">
+      <div></div><div></div>
+      <div class="bb1 building-wrap"><div class="bb1a bb1-window"></div><div class="bb1b bb1-window"></div><div class="bb1c bb1-window"></div><div class="bb1d"></div></div>
+      <div class="bb2"><div class="bb2a"></div><div class="bb2b"></div></div>
+      <div class="bb3"></div><div></div>
+      <div class="bb4 building-wrap"><div class="bb4a"></div><div class="bb4b"></div><div class="bb4c window-wrap"><div class="bb4-window"></div><div class="bb4-window"></div></div></div>
+      <div></div><div></div>
+    </div>
+    <div class="foreground-buildings">
+      <div></div><div></div>
+      <div class="fb1 building-wrap"><div class="fb1a"></div><div class="fb1b"></div><div class="fb1c"></div></div>
+      <div class="fb2"><div class="fb2a"></div><div class="fb2b window-wrap"><div class="fb2-window"></div></div></div>
+      <div></div>
+      <div class="fb3 building-wrap"><div class="fb3a window-wrap"><div class="fb3-window"></div></div><div class="fb3b"></div><div class="fb3a"></div><div class="fb3b"></div></div>
+      <div class="fb4"><div class="fb4a"></div><div class="fb4b"><div class="fb4-window"></div><div class="fb4-window"></div></div></div>
+      <div class="fb5"></div><div class="fb6"></div><div></div><div></div>
+    </div>
+  </body>
+</html>`
+            },
+            {
+                id: 'magazine',
+                title: 'Magazine (CSS Grid 雜誌矩陣)',
+                urlTag: 'magazine.html',
+                description: '掌握最複雜的網格排版系統 (CSS Grid)。結合 column-width 實作多欄文字，並載入外部字體，在網頁上重現實體雜誌的豐富層次與專業質感。',
+                icon: 'fa-book-open',
+                code: `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Magazine</title>
+    <link href="https://fonts.googleapis.com/css?family=Anton%7CBaskervville%7CRaleway&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" />
+    <style>
+      *, ::before, ::after { padding: 0; margin: 0; box-sizing: border-box; }
+      html { font-size: 62.5%; }
+      body { font-family: 'Baskervville', serif; color: linen; background-color: rgb(20, 30, 40); }
+      h1 { font-family: 'Anton', sans-serif; }
+      h2, h3, h4, h5, h6 { font-family: 'Raleway', sans-serif; }
+      a { text-decoration: none; color: linen; }
+      main { display: grid; grid-template-columns: minmax(2rem, 1fr) minmax(min-content, 94rem) minmax(2rem, 1fr); row-gap: 3rem; }
+      img { width: 100%; object-fit: cover; }
+      hr { margin: 1.5rem 0; border: 1px solid rgba(120, 120, 120, 0.6); }
+      .heading { grid-column: 2 / 3; display: grid; grid-template-columns: repeat(2, 1fr); row-gap: 1.5rem; }
+      .text { grid-column: 2 / 3; font-size: 1.8rem; letter-spacing: 0.6px; column-width: 25rem; text-align: justify; }
+      .hero { grid-column: 1 / -1; position: relative; }
+      .hero-title { text-align: center; color: orangered; font-size: 8rem; }
+      .hero-subtitle { font-size: 2.4rem; color: orangered; text-align: center; }
+      .author { font-size: 2rem; font-family: "Raleway", sans-serif; }
+      .publish-date { color: rgba(255, 255, 255, 0.5); }
+      .social-icons { display: grid; font-size: 3rem; grid-template-columns: repeat(5, 1fr); grid-auto-flow: column; grid-auto-columns: 1fr; align-items: center; }
+      .first-paragraph::first-letter { font-size: 6rem; color: orangered; float: left; margin-right: 1rem; }
+      .quote { color: #00beef; font-size: 2.4rem; text-align: center; font-family: "Raleway", sans-serif; }
+      .text-with-images { display: grid; grid-template-columns: 1fr 2fr; column-gap: 3rem; margin-bottom: 3rem; }
+      .lists { list-style-type: none; margin-top: 2rem; }
+      .lists li { margin-bottom: 1.5rem; }
+      .list-title, .list-subtitle { color: #00beef; }
+      .image-wrapper { display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: repeat(3, min-content); gap: 2rem; place-items: center; }
+      .image-1, .image-3 { grid-column: 1 / -1; }
+      @media only screen and (max-width: 720px) { .image-wrapper { grid-template-columns: 1fr; } }
+      @media only screen and (max-width: 600px) { .text-with-images { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="heading">
+        <header class="hero">
+          <img src="https://cdn.freecodecamp.org/platform/universal/fcc_meta_1920X1080-indigo.png" alt="logo" class="hero-img" />
+          <h1 class="hero-title">NEW CURRICULUM</h1>
+          <p class="hero-subtitle">Our efforts to restructure with a project-based focus</p>
+        </header>
+        <div class="author"><p class="author-name">By freeCodeCamp</p><p class="publish-date">March 7, 2019</p></div>
+        <div class="social-icons"><i class="fab fa-facebook-f"></i><i class="fab fa-twitter"></i><i class="fab fa-instagram"></i></div>
+      </section>
+      <section class="text">
+        <p class="first-paragraph">Soon the curriculum will be 100% project-driven learning. Instead of a series of coding challenges, you'll learn through building projects - step by step.</p>
+        <p>No more walls of explanatory text. Just one test at a time, as you build up a working project.</p>
+      </section>
+      <section class="text text-with-images">
+        <article class="brief-history">
+          <h3 class="list-title">A Brief History</h3>
+          <ul class="lists">
+            <li><h4 class="list-subtitle">V1 - 2014</h4><p>We launched with a simple list of resources.</p></li>
+            <li><h4 class="list-subtitle">V6 - 2018</h4><p>We launched 6 new certifications to replace our old ones.</p></li>
+          </ul>
+        </article>
+        <aside class="image-wrapper">
+          <img src="https://cdn.freecodecamp.org/testable-projects-fcc/images/random-quote-machine.png" alt="quote" class="image-1" />
+          <img src="https://cdn.freecodecamp.org/testable-projects-fcc/images/calc.png" alt="calc" class="image-2" />
+        </aside>
+      </section>
+    </main>
+  </body>
+</html>`
+            },
+            {
+                id: 'ferris-wheel',
+                title: 'Ferris Wheel (物理運動模擬動畫)',
+                urlTag: 'ferris-wheel.html',
+                description: '進階的純 CSS 動畫 (@keyframes)。巧妙設定外圈正轉與座艙反轉，使得摩天輪能順暢運轉，且座艙能符合真實物理直立不倒，邏輯性極強。',
+                icon: 'fa-dharmachakra',
+                code: `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Ferris Wheel</title>
+    <style>
+      .wheel { border: 2px solid black; border-radius: 50%; margin: 50px auto; position: relative; height: 55vw; width: 55vw; max-width: 400px; max-height: 400px; animation: wheel 10s linear infinite; }
+      .line { background-color: black; width: 50%; height: 2px; position: absolute; top: 50%; left: 50%; transform-origin: 0% 0%; }
+      .line:nth-of-type(2) { transform: rotate(60deg); } .line:nth-of-type(3) { transform: rotate(120deg); } .line:nth-of-type(4) { transform: rotate(180deg); } .line:nth-of-type(5) { transform: rotate(240deg); } .line:nth-of-type(6) { transform: rotate(300deg); }
+      .cabin { background-color: red; width: 20%; height: 20%; position: absolute; border: 2px solid; transform-origin: 50% 0%; animation: cabins 10s ease-in-out infinite; }
+      .cabin:nth-of-type(1) { right: -8.5%; top: 50%; } .cabin:nth-of-type(2) { right: 17%; top: 93.5%; } .cabin:nth-of-type(3) { right: 67%; top: 93.5%; }
+      .cabin:nth-of-type(4) { left: -8.5%; top: 50%; } .cabin:nth-of-type(5) { left: 17%; top: 7%; } .cabin:nth-of-type(6) { right: 17%; top: 7%; }
+      @keyframes wheel { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+      @keyframes cabins { 0% { transform: rotate(0deg); } 25% { background-color: yellow; } 50% { background-color: purple; } 75% { background-color: yellow; } 100% { transform: rotate(-360deg); } }
+    </style>
+  </head>
+  <body>
+    <div class="wheel">
+      <span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span>
+      <div class="cabin"></div><div class="cabin"></div><div class="cabin"></div><div class="cabin"></div><div class="cabin"></div><div class="cabin"></div>
+    </div>
+  </body>
+</html>`
+            },
+            {
+                id: 'penguin',
+                title: 'Penguin (互動式連續動畫)',
+                urlTag: 'penguin.html',
+                description: '請用滑鼠長按企鵝！此專案除了運用 z-index 與變形切割畫面，更結合了 @keyframes 揮手動畫與 :active 偽類達成的點擊回饋，互動感十足。',
+                icon: 'fa-linux',
+                code: `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Penguin</title>
+    <style>
+      :root { --penguin-face: white; --penguin-picorna: orange; --penguin-skin: gray; }
+      body { background: linear-gradient(45deg, rgb(118, 201, 255), rgb(247, 255, 222)); margin: 0; padding: 0; width: 100%; height: 100vh; overflow: hidden; }
+      .left-mountain { width: 300px; height: 300px; background: linear-gradient(rgb(203, 241, 228), rgb(80, 183, 255)); position: absolute; transform: skew(0deg, 44deg); z-index: 2; margin-top: 100px; }
+      .back-mountain { width: 300px; height: 300px; background: linear-gradient(rgb(203, 241, 228), rgb(47, 170, 255)); position: absolute; z-index: 1; transform: rotate(45deg); left: 110px; top: 225px; }
+      .sun { width: 200px; height: 200px; background-color: yellow; position: absolute; border-radius: 50%; top: -75px; right: -75px; }
+      .penguin { width: 300px; height: 300px; margin: auto; margin-top: 75px; z-index: 4; position: relative; transition: transform 1s ease-in-out 0ms; }
+      .penguin * { position: absolute; }
+      .penguin:active { transform: scale(1.5); cursor: not-allowed; }
+      .penguin-head { width: 50%; height: 45%; background: linear-gradient(45deg, var(--penguin-skin), rgb(239, 240, 228)); border-radius: 70% 70% 65% 65%; top: 10%; left: 25%; z-index: 1; }
+      .face { width: 60%; height: 70%; background-color: var(--penguin-face); border-radius: 70% 70% 60% 60%; top: 15%; }
+      .face.left { left: 5%; } .face.right { right: 5%; }
+      .chin { width: 90%; height: 70%; background-color: var(--penguin-face); top: 25%; left: 5%; border-radius: 70% 70% 100% 100%; }
+      .eye { width: 15%; height: 17%; background-color: black; top: 45%; border-radius: 50%; } .eye.left { left: 25%; } .eye.right { right: 25%; }
+      .eye-lid { width: 150%; height: 100%; background-color: var(--penguin-face); top: 25%; left: -23%; border-radius: 50%; }
+      .blush { width: 15%; height: 10%; background-color: pink; top: 65%; border-radius: 50%; } .blush.left { left: 15%; } .blush.right { right: 15%; }
+      .beak { height: 10%; background-color: var(--penguin-picorna); border-radius: 50%; } .beak.top { width: 20%; top: 60%; left: 40%; } .beak.bottom { width: 16%; top: 65%; left: 42%; }
+      .shirt { font: bold 25px Helvetica, sans-serif; top: 165px; left: 127.5px; z-index: 1; color: #6a6969; } .shirt div { font-weight: initial; top: 22.5px; left: 12px; }
+      .penguin-body { width: 53%; height: 45%; background: linear-gradient(45deg, rgb(134, 133, 133) 0%, rgb(234, 231, 231) 25%, white 67%); border-radius: 80% 80% 100% 100%; top: 40%; left: 23.5%; }
+      .penguin-body::before { content: ""; position: absolute; width: 50%; height: 45%; background-color: var(--penguin-skin); top: 10%; left: 25%; border-radius: 0% 0% 100% 100%; opacity: 70%; }
+      .arm { width: 30%; height: 60%; background: linear-gradient(90deg, var(--penguin-skin), rgb(209, 210, 199)); border-radius: 30% 30% 30% 120%; z-index: -1; }
+      .arm.left { top: 35%; left: 5%; transform-origin: top left; transform: rotate(130deg) scaleX(-1); animation: 3s linear infinite wave; }
+      .arm.right { top: 0%; right: -5%; transform: rotate(-45deg); }
+      @keyframes wave { 10% { transform: rotate(110deg) scaleX(-1); } 20% { transform: rotate(130deg) scaleX(-1); } 30% { transform: rotate(110deg) scaleX(-1); } 40% { transform: rotate(130deg) scaleX(-1); } }
+      .foot { width: 15%; height: 30%; background-color: var(--penguin-picorna); top: 85%; border-radius: 50%; z-index: -1; }
+      .foot.left { left: 25%; transform: rotate(80deg); } .foot.right { right: 25%; transform: rotate(-80deg); }
+      .ground { width: 100vw; height: calc(100vh - 300px); background: linear-gradient(90deg, rgb(88, 175, 236), rgb(182, 255, 255)); z-index: 3; position: absolute; margin-top: -58px; }
+    </style>
+  </head>
+  <body>
+    <div class="left-mountain"></div><div class="back-mountain"></div><div class="sun"></div>
+    <div class="penguin">
+      <div class="penguin-head">
+        <div class="face left"></div><div class="face right"></div><div class="chin"></div>
+        <div class="eye left"><div class="eye-lid"></div></div><div class="eye right"><div class="eye-lid"></div></div>
+        <div class="blush left"></div><div class="blush right"></div><div class="beak top"></div><div class="beak bottom"></div>
+      </div>
+      <div class="shirt"><div>💜</div><p>I CSS</p></div> 
+      <div class="penguin-body"><div class="arm left"></div><div class="arm right"></div><div class="foot left"></div><div class="foot right"></div></div>
+    </div>
+    <div class="ground"></div>
+  </body>
+</html>`
+            }
+        ];
+
+        let currentActiveId = null;
+
+        // 初始化左側專案清單
+        function initPracticeSection() {
+            const container = document.getElementById('left-pane');
+            container.innerHTML = '';
+
+            practiceData.forEach((project, index) => {
+                const btn = document.createElement('button');
+                // 手機版使用橫向卡片縮圖，電腦版直向排列
+                btn.className = `shrink-0 w-64 lg:w-full text-left px-4 py-3.5 rounded-xl border-2 transition-all duration-200 flex flex-col lg:flex-row lg:items-center gap-3 ${
+                    index === 0 
+                    ? 'bg-blue-50/50 border-blue-400 shadow-sm' 
+                    : 'bg-white border-transparent text-gray-600 hover:bg-gray-100/80 hover:border-gray-200'
+                }`;
+                btn.id = `btn-${project.id}`;
+                btn.onclick = () => loadProject(project.id);
+
+                btn.innerHTML = `
+                    <div class="w-10 h-10 rounded-lg flex shrink-0 items-center justify-center ${index === 0 ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 text-gray-500'} transition-colors btn-icon-container">
+                        <i class="fas ${project.icon || 'fa-code'}"></i>
+                    </div>
+                    <div class="flex-grow min-w-0">
+                        <div class="font-bold text-sm truncate ${index === 0 ? 'text-blue-900' : 'text-gray-700'} btn-title">${project.title}</div>
+                        <div class="text-xs text-gray-500 mt-1 truncate">點擊載入預覽</div>
+                    </div>
+                `;
+                container.appendChild(btn);
+            });
+
+            if (practiceData.length > 0) {
+                loadProject(practiceData[0].id);
+            }
+        }
+
+        // 載入專案到 Iframe
+        function loadProject(id) {
+            if (currentActiveId === id) return;
+            currentActiveId = id;
+
+            const project = practiceData.find(p => p.id === id);
+            if (!project) return;
+
+            // 更新按鈕樣式切換
+            practiceData.forEach(p => {
+                const btn = document.getElementById(`btn-${p.id}`);
+                const iconContainer = btn.querySelector('.btn-icon-container');
+                const titleText = btn.querySelector('.btn-title');
+                if (p.id === id) {
+                    btn.className = 'shrink-0 w-64 lg:w-full text-left px-4 py-3.5 rounded-xl border-2 transition-all duration-200 flex flex-col lg:flex-row lg:items-center gap-3 bg-blue-50/50 border-blue-400 shadow-sm';
+                    iconContainer.className = 'w-10 h-10 rounded-lg flex shrink-0 items-center justify-center bg-blue-600 text-white shadow-md transition-colors btn-icon-container';
+                    titleText.className = 'font-bold text-sm truncate text-blue-900 btn-title';
+                    
+                    // 手機版自動捲動到被點擊的按鈕
+                    if (window.innerWidth < 1024) {
+                        btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                    }
+                } else {
+                    btn.className = 'shrink-0 w-64 lg:w-full text-left px-4 py-3.5 rounded-xl border-2 transition-all duration-200 flex flex-col lg:flex-row lg:items-center gap-3 bg-white border-transparent text-gray-600 hover:bg-gray-100/80 hover:border-gray-200';
+                    iconContainer.className = 'w-10 h-10 rounded-lg flex shrink-0 items-center justify-center bg-gray-100 text-gray-500 transition-colors btn-icon-container';
+                    titleText.className = 'font-bold text-sm truncate text-gray-700 btn-title';
+                }
+            });
+
+            // 更新預覽區的標題與描述
+            document.getElementById('browser-url').textContent = `local://sandbox/${project.urlTag}`;
+            document.getElementById('preview-title').textContent = project.title;
+            document.getElementById('preview-desc').textContent = project.description;
+
+            // 將 HTML 注入 Iframe
+            const iframe = document.getElementById('preview-frame');
+            iframe.srcdoc = project.code;
+        }
+
+        const splitter = document.getElementById('drag-splitter');
+        const leftPane = document.getElementById('left-pane');
+        const sandboxContainer = document.getElementById('sandbox-container');
+        const iframeOverlay = document.getElementById('iframe-overlay');
+        let isResizing = false;
+
+        splitter.addEventListener('mousedown', (e) => {
+            isResizing = true;
+            document.body.style.cursor = 'col-resize';
+            // 啟用遮罩防止滑鼠事件被 iframe 吞噬
+            iframeOverlay.classList.remove('hidden');
+            e.preventDefault(); 
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isResizing) return;
+            // 僅在桌面版寬度以上才允許縮放
+            if (window.innerWidth >= 1024) {
+                const containerRect = sandboxContainer.getBoundingClientRect();
+                let newWidthPercentage = ((e.clientX - containerRect.left) / containerRect.width) * 100;
+                
+                // 限制左側選單的縮放範圍 (20% 到 50%)
+                if (newWidthPercentage < 20) newWidthPercentage = 20;
+                if (newWidthPercentage > 50) newWidthPercentage = 50;
+                
+                leftPane.style.width = `${newWidthPercentage}%`;
+            }
+        });
+
+        window.addEventListener('mouseup', () => {
+            if (isResizing) {
+                isResizing = false;
+                document.body.style.cursor = 'default';
+                // 移除 iframe 遮罩
+                iframeOverlay.classList.add('hidden');
+            }
+        });
+
+        // 當視窗縮小至手機版時，重置左側寬度避免跑版
+        window.addEventListener('resize', () => {
+            if (window.innerWidth < 1024) {
+                leftPane.style.width = '100%';
+            } else if (!leftPane.style.width || leftPane.style.width === '100%') {
+                leftPane.style.width = '35%'; // 預設桌面版比例
+            }
+        });
+
+        // 當網頁載入完成後執行初始化
+        window.onload = function() {
+            initPracticeSection();
+        };
+    </script>
+</body>
+</html>
