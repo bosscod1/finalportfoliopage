@@ -1,275 +1,506 @@
 <!DOCTYPE html>
-<html lang="zh-TW" class="scroll-smooth">
+<html lang="zh-Hant-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>特殊選才備審資料 | 程式作品展示</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
-        body { font-family: 'Noto Sans TC', sans-serif; }
-        
-        /* 網頁整體滾動條美化 */
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
-        
-        /* 手機版橫向滑動區塊隱藏原生捲軸，保持美觀 */
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>鍾友銓 Peter｜程式作品集</title>
+  <meta name="description" content="鍾友銓（Peter）的程式作品集：新竹市實驗教育自學生，從 HTML/CSS 練習到實際上線的網站與 AI 專題。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #F7F8F5;
+      --surface: #FFFFFF;
+      --ink: #1D2433;
+      --muted: #5B6475;
+      --rule: #D9DEE5;
+      --line: #0E7C66;       /* 路線色：整個網站唯一的主色 */
+      --line-soft: #E3F1EC;
+      --signal: #F2B705;     /* 只用在「下一站」 */
+      --hand: "LXGW WenKai TC", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", serif;
+      --body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      --mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 17px;
+      line-height: 1.85;
+    }
+    a { color: var(--line); text-underline-offset: 3px; }
+    a:hover { color: var(--ink); }
+    :focus-visible { outline: 3px solid var(--signal); outline-offset: 2px; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .prose { max-width: 40em; }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #2563eb, #9333ea, #db2777);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        /* 拖曳時防止文字被選取 */
-        .no-select {
-            user-select: none;
-            -webkit-user-select: none;
-        }
-    </style>
+    /* ---------- 頂部導覽 ---------- */
+    .topbar {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(247, 248, 245, 0.94);
+      border-bottom: 1px solid var(--rule);
+    }
+    .topbar .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
+    .brand { font-family: var(--hand); font-size: 1.25rem; font-weight: 700; color: var(--ink); text-decoration: none; }
+    .brand span { color: var(--muted); font-weight: 400; font-size: 0.95rem; margin-left: 6px; }
+    .topbar nav { display: flex; gap: 22px; }
+    .topbar nav a { color: var(--muted); text-decoration: none; font-size: 0.95rem; }
+    .topbar nav a:hover { color: var(--line); }
+    @media (max-width: 720px) { .topbar nav { display: none; } }
+
+    /* ---------- 開頭自我介紹 ---------- */
+    .intro { padding: 72px 0 40px; }
+    .intro h1 {
+      font-family: var(--hand);
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      line-height: 1.3;
+      margin: 0 0 24px;
+      font-weight: 700;
+    }
+    .intro p { margin: 0 0 16px; color: #333B4A; }
+    .facts {
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      gap: 6px 24px;
+      margin: 32px 0 0;
+      padding: 20px 0 0;
+      border-top: 1px solid var(--rule);
+      max-width: 40em;
+      font-size: 0.95rem;
+    }
+    .facts dt { color: var(--muted); }
+    .facts dd { margin: 0; }
+    @media (max-width: 560px) {
+      .facts { grid-template-columns: 1fr; gap: 0; }
+      .facts dd { margin-bottom: 10px; }
+    }
+
+    /* ---------- 區塊標題 ---------- */
+    section { padding: 64px 0; }
+    .section-head h2 {
+      font-family: var(--hand);
+      font-size: 2rem;
+      margin: 0 0 8px;
+      font-weight: 700;
+    }
+    .section-head p { margin: 0 0 36px; color: var(--muted); max-width: 40em; }
+
+    /* ---------- 自學路線圖（整個網站的主視覺） ---------- */
+    .route {
+      list-style: none; margin: 0; padding: 0;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      position: relative;
+    }
+    .route::before {
+      content: ""; position: absolute;
+      left: 8%; right: 8%; top: 13px;
+      height: 6px; border-radius: 3px;
+      /* 走過的路是實線，往「下一站」的那一段是虛線 */
+      background: linear-gradient(90deg, var(--line) 0 80%, transparent 80%),
+                  repeating-linear-gradient(90deg, var(--line) 0 10px, transparent 10px 18px);
+    }
+    .stop { position: relative; padding: 0 10px; text-align: center; }
+    .stop .dot {
+      display: block; width: 32px; height: 32px; margin: 0 auto 14px;
+      border-radius: 50%; background: var(--surface);
+      border: 6px solid var(--line); position: relative; z-index: 1;
+    }
+    .stop.next .dot { border-color: var(--signal); background: var(--signal); }
+    .next-label { display: block; font-size: 0.85rem; color: #8A6A00; }
+    .stop h3 { font-size: 1rem; margin: 2px 0 6px; line-height: 1.5; }
+    .stop p { font-size: 0.88rem; color: var(--muted); margin: 0; line-height: 1.7; }
+    .stop.next h3 { font-family: var(--hand); font-size: 1.15rem; }
+    @media (max-width: 900px) {
+      .route { grid-template-columns: 1fr; gap: 26px; }
+      .route::before { left: 13px; right: auto; top: 10px; bottom: 10px; width: 6px; height: auto;
+        background: var(--line); }
+      .stop { text-align: left; padding: 0 0 0 52px; }
+      .stop .dot { position: absolute; left: 0; top: 0; margin: 0; }
+    }
+
+    /* ---------- 上線作品 ---------- */
+    .work {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-left: 6px solid var(--line);
+      padding: 32px 36px;
+      margin-bottom: 28px;
+    }
+    .work header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; }
+    .work h3 { font-family: var(--hand); font-size: 1.6rem; margin: 0; line-height: 1.4; }
+    .work .award { font-size: 0.9rem; color: var(--line); font-weight: 700; }
+    .work .oneline { margin: 8px 0 24px; color: var(--muted); max-width: 44em; }
+    .work .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .work h4 { font-size: 0.95rem; margin: 0 0 6px; color: var(--line); }
+    .work .cols p, .work .cols li { font-size: 0.95rem; line-height: 1.8; }
+    .work .cols p { margin: 0; }
+    .work ul { margin: 0; padding-left: 1.2em; }
+    .work footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 26px; padding-top: 18px; border-top: 1px dashed var(--rule); }
+    .tech { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); }
+    .visit {
+      display: inline-block; padding: 8px 18px;
+      border: 2px solid var(--ink); color: var(--ink);
+      text-decoration: none; font-weight: 700; font-size: 0.95rem;
+    }
+    .visit:hover { background: var(--ink); color: var(--paper); }
+    .work .sub { margin: 0 0 4px; }
+    .features { margin: 0 0 18px; }
+    .features div { display: grid; grid-template-columns: 11em 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px dashed var(--rule); }
+    .features dt { font-weight: 700; }
+    .features dd { margin: 0; font-size: 0.95rem; }
+    .others { font-size: 0.95rem; color: var(--muted); margin: 0 0 24px; }
+    .work .cols.two { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 640px) { .features div { grid-template-columns: 1fr; gap: 2px; } }
+    @media (max-width: 860px) {
+      .work { padding: 24px 20px; }
+      .work .cols, .work .cols.two { grid-template-columns: 1fr; gap: 18px; }
+    }
+
+    /* ---------- 練習沙盒 ---------- */
+    .note-box {
+      background: var(--line-soft);
+      padding: 16px 20px;
+      margin: 0 0 32px;
+      max-width: 44em;
+      font-size: 0.95rem;
+    }
+    .note-box p { margin: 0; }
+    .lab {
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      border: 1px solid var(--rule);
+      background: var(--surface);
+      min-height: 720px;
+    }
+    .lab-list { border-right: 1px solid var(--rule); padding: 16px 0; overflow-y: auto; max-height: 900px; }
+    .lab-list h4 { font-size: 0.82rem; color: var(--muted); font-weight: 500; margin: 14px 20px 4px; }
+    .lab-list h4:first-child { margin-top: 0; }
+    .lab-item {
+      display: block; width: 100%; text-align: left;
+      background: none; border: 0; border-left: 4px solid transparent;
+      padding: 8px 16px; cursor: pointer;
+      font: inherit; font-size: 0.95rem; color: var(--ink); line-height: 1.5;
+    }
+    .lab-item small { display: block; color: var(--muted); font-size: 0.8rem; }
+    .lab-item:hover { background: var(--paper); }
+    .lab-item[aria-current="true"] { border-left-color: var(--line); background: var(--line-soft); font-weight: 700; }
+    .lab-main { display: flex; flex-direction: column; min-width: 0; }
+    .lab-bar {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px;
+      padding: 14px 20px; border-bottom: 1px solid var(--rule);
+    }
+    .lab-bar h3 { margin: 0; font-size: 1.1rem; }
+    .controls { display: flex; flex-wrap: wrap; gap: 6px; }
+    .controls button {
+      font: inherit; font-size: 0.85rem; cursor: pointer;
+      border: 1px solid var(--rule); background: var(--surface); color: var(--ink);
+      padding: 4px 12px;
+    }
+    .controls button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .controls .sep { width: 1px; background: var(--rule); margin: 0 4px; }
+    .stage {
+      background-color: #EEF0EC;
+      background-image: radial-gradient(#D3D8D0 1px, transparent 1px);
+      background-size: 16px 16px;
+      position: relative;
+      height: 560px;
+      overflow: hidden;
+    }
+    /* iframe 用「真實裝置寬度」渲染，再等比縮小放進預覽框，
+       這樣作品裡的 @media 才會依照手機／平板／電腦的寬度正確反應 */
+    .stage iframe {
+      position: absolute; top: 16px; left: 16px;
+      border: 1px solid var(--rule); background: #fff;
+      transform-origin: top left;
+    }
+    .scale-note {
+      position: absolute; right: 12px; bottom: 0;
+      font-size: 0.75rem; color: var(--muted);
+    }
+    .codeview {
+      display: none; margin: 0; max-height: 552px; overflow: auto;
+      background: #1E2430; color: #E3E7EE;
+      font-family: var(--mono); font-size: 0.8rem; line-height: 1.6;
+      padding: 18px 20px; tab-size: 2;
+    }
+    .lab.show-code .codeview { display: block; }
+    .lab.show-code .stage { display: none; }
+    .lab-notes { padding: 22px 24px 26px; border-top: 1px solid var(--rule); display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .lab-notes h4 { margin: 0 0 6px; font-size: 0.95rem; color: var(--line); }
+    .lab-notes p, .lab-notes li { font-size: 0.93rem; line-height: 1.8; }
+    .lab-notes p { margin: 0; }
+    .lab-notes ul { margin: 0; padding-left: 1.2em; }
+    .lab-notes code { font-family: var(--mono); font-size: 0.85em; background: var(--paper); padding: 1px 4px; }
+    .hint { margin-top: 10px !important; color: #7A5B00; }
+    @media (max-width: 900px) {
+      .lab { grid-template-columns: 1fr; min-height: 0; }
+      .lab-list { border-right: 0; border-bottom: 1px solid var(--rule); max-height: 260px; }
+      .lab-notes { grid-template-columns: 1fr; }
+      .stage { height: 460px; }
+    }
+
+    /* ---------- 頁尾 ---------- */
+    .site-foot { border-top: 1px solid var(--rule); padding: 32px 0 48px; color: var(--muted); font-size: 0.9rem; }
+    .site-foot .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+    .site-foot p { margin: 0; }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased selection:bg-blue-200 selection:text-blue-900">
+<body>
 
-    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex-shrink-0 flex items-center gap-2">
-                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white shadow-md">
-                        <i class="fas fa-terminal text-sm"></i>
-                    </div>
-                    <span class="font-bold text-xl tracking-wider text-gray-900 ml-1">PortfolioHub</span>
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#about" class="text-gray-600 hover:text-blue-600 transition font-medium">簡歷與動機</a>
-                    <a href="#deployed-projects" class="text-gray-600 hover:text-blue-600 transition font-medium">實戰部署專案</a>
-                    <a href="#practice-projects" class="text-gray-600 hover:text-blue-600 transition font-medium">微型實作沙盒</a>
-                </div>
-            </div>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="#top">鍾友銓<span>Peter</span></a>
+      <nav aria-label="頁面導覽">
+        <a href="#route">自學路線</a>
+        <a href="#works">上線作品</a>
+        <a href="#lab">基礎練習</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- 自我介紹 -->
+    <div class="intro">
+      <div class="wrap">
+        <h1>鍾友銓的程式作品集</h1>
+        <div class="prose">
+          <p>我是鍾友銓（Peter），目前在新竹市以非學校型態實驗教育自學，課表、進度和教材都由我自己規劃。</p>
+          <p>寫程式是我自學裡花最多心力的一塊。為了不讓備審資料塞滿連結和 QR code，我把做過的東西整理在這個網站：上面是自己規劃、實際上線的網站，下面是我打基礎時做的練習，每一個都能直接打開來操作，也附上它在做什麼、我從中練到了什麼。</p>
         </div>
-    </nav>
+        <dl class="facts">
+          <dt>學習身分</dt>
+          <dd>新竹市非學校型態實驗教育，直屬新竹市教育處</dd>
+          <dt>證照</dt>
+          <dd>中華民國電腦軟體設計丙級技術士</dd>
+          <dt>作品</dt>
+          <dd>累積近 50 個程式作品專案，這裡收錄 3 個上線網站與 15 個基礎練習</dd>
+          <dt>營隊</dt>
+          <dd>清交 NATCP AI 資工營，結業專題獲佳作</dd>
+        </dl>
+      </div>
+    </div>
 
-    <header id="about" class="relative bg-white overflow-hidden">
-        <div class="absolute inset-y-0 left-0 w-1/2 bg-gray-50 rounded-r-full opacity-50 transform -translate-x-1/3"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24 lg:pt-32 lg:pb-32 text-center relative z-10">
-            <div class="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 text-blue-700 font-semibold text-sm mb-6 border border-blue-100 shadow-sm">
-                <i class="fas fa-graduation-cap mr-2"></i> 特殊選才備審專用
-            </div>
-            <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-                <span class="block">自學程式設計的軌跡</span>
-                <span class="block gradient-text mt-3">技術實踐與學習歷程展示</span>
-            </h1>
-            <p class="mt-6 max-w-3xl text-lg text-gray-600 mx-auto leading-relaxed">
-                各位教授好，歡迎蒞臨我的程式實作展示樞紐。本網站整合了我自學程式以來的各階段心血，從基礎概念的刻意練習，到整合前沿 AI 技術的實戰專案。期盼能透過此動態平台，具體呈現我的自學成效、技術底蘊與解決問題的動能。
-            </p>
-            <div class="mt-10 flex justify-center gap-4 flex-col sm:flex-row">
-                <a href="#deployed-projects" class="px-8 py-3.5 border border-transparent text-base font-semibold rounded-full text-white bg-blue-600 hover:bg-blue-700 md:text-lg transition-all shadow-lg hover:shadow-blue-500/30 hover:-translate-y-0.5">
-                    <i class="fas fa-rocket mr-2"></i> 觀看實戰專案
-                </a>
-                <a href="#practice-projects" class="px-8 py-3.5 border-2 border-gray-200 text-base font-semibold rounded-full text-gray-700 bg-white hover:border-blue-600 hover:text-blue-600 md:text-lg transition-all shadow-sm hover:shadow-md">
-                    <i class="fas fa-code mr-2"></i> 探索實作沙盒
-                </a>
-            </div>
+    <!-- 自學路線 -->
+    <section id="route">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>我的自學路線</h2>
+          <p>沒有學校替我排課，所以每一站都是自己決定要往哪裡走。</p>
         </div>
-    </header>
-
-    <section id="deployed-projects" class="py-24 bg-gray-50 border-t border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">已部署的大型實戰專案</h2>
-                <div class="w-24 h-1 bg-blue-600 mx-auto mt-6 rounded-full"></div>
-                <p class="mt-6 max-w-2xl text-lg text-gray-500 mx-auto">
-                    這些是我整合多項技術、獨立規劃並實際部署上線的完整網站作品。展現了從發想、刻版、邏輯實作到正式上線的端到端 (End-to-End) 開發能力。
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- 專案 1: 前端技術啟蒙作品集 -->
-                <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group border border-gray-200 flex flex-col">
-                    <div class="h-52 bg-gradient-to-br from-indigo-500 via-blue-600 to-cyan-500 flex items-center justify-center text-white relative overflow-hidden">
-                        <i class="fas fa-laptop-code text-7xl opacity-40 group-hover:scale-110 transition-transform duration-700 group-hover:rotate-3"></i>
-                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-300"></div>
-                        <div class="absolute bottom-4 right-4 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium border border-white/30">v1.0</div>
-                    </div>
-                    <div class="p-8 flex-grow flex flex-col">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">前端技術啟蒙作品集</h3>
-                        </div>
-                        <p class="text-gray-600 text-base leading-relaxed mb-6 flex-grow">
-                            這是我踏入網頁開發領域的首個里程碑。網站中不僅收錄了早期 HTML、CSS 與 JavaScript 的綜合實作，更特闢專區記錄我的讀書心得與反思。這個專案證明了我在累積技術硬實力的同時，亦重視人文素養與知識沉澱的特質。
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-8">
-                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-md">HTML5</span>
-                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-md">CSS3</span>
-                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-md">Vanilla JS</span>
-                        </div>
-                        <a href="https://bosscod1.github.io/PortfolioPage/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center w-full justify-center px-4 py-3 border border-gray-300 text-sm font-semibold rounded-xl text-gray-700 bg-white hover:bg-gray-50 hover:border-blue-500 hover:text-blue-600 transition-all shadow-sm">
-                            造訪網站 <i class="fas fa-external-link-alt ml-2 text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- 專案 2: 實驗教育自學歷程 -->
-                <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group border border-gray-200 flex flex-col">
-                    <div class="h-52 bg-gradient-to-br from-teal-500 via-emerald-500 to-green-600 flex items-center justify-center text-white relative overflow-hidden">
-                        <i class="fas fa-user-graduate text-7xl opacity-40 group-hover:scale-110 transition-transform duration-700 group-hover:-rotate-3"></i>
-                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-300"></div>
-                        <div class="absolute bottom-4 right-4 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium border border-white/30">學習紀錄</div>
-                    </div>
-                    <div class="p-8 flex-grow flex flex-col">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-2xl font-bold text-gray-900 group-hover:text-emerald-600 transition-colors">實驗教育自學歷程展示</h3>
-                        </div>
-                        <p class="text-gray-600 text-base leading-relaxed mb-6 flex-grow">
-                            這是專為「自學訪視報告」量身打造的動態履歷。有別於傳統文件，我透過網站有條理地彙整了各科目的階段性學習軌跡。此專案展現了我將龐雜資訊結構化，並透過優良 UI/UX 介面直觀呈現給審查委員的能力。
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-8">
-                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-md">Responsive Design</span>
-                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-md">UI/UX</span>
-                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-md">Data Structuring</span>
-                        </div>
-                        <a href="https://bosscod1.github.io/portfolio/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center w-full justify-center px-4 py-3 border border-gray-300 text-sm font-semibold rounded-xl text-gray-700 bg-white hover:bg-gray-50 hover:border-emerald-500 hover:text-emerald-600 transition-all shadow-sm">
-                            造訪網站 <i class="fas fa-external-link-alt ml-2 text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- 專案 3: NATCP AI 資工營 -->
-                <div class="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 group border-2 border-purple-100 flex flex-col relative transform hover:-translate-y-1">
-                    <div class="absolute -top-3 -right-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg z-10 animate-bounce">
-                        <i class="fas fa-star mr-1"></i> 重點推薦
-                    </div>
-                    <div class="h-52 bg-gradient-to-br from-fuchsia-600 via-purple-700 to-violet-800 flex items-center justify-center text-white relative overflow-hidden rounded-t-2xl">
-                        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
-                        <i class="fas fa-brain text-7xl opacity-50 group-hover:scale-110 transition-transform duration-700 group-hover:rotate-6"></i>
-                    </div>
-                    <div class="p-8 flex-grow flex flex-col">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-2xl font-bold text-gray-900 group-hover:text-purple-700 transition-colors">Alan 的求職網站</h3>
-                        </div>
-                        <div class="text-sm text-purple-600 font-semibold mb-3">清交 NATCP AI 資工營結業專題</div>
-                        <p class="text-gray-600 text-base leading-relaxed mb-6 flex-grow">
-                            以「高中生求職網站」為題，採終端機 (Terminal) 風格介面開發。身為全營唯一導入 AI 功能的組別，我們實作了中英/亮暗切換、極客語氣轉換、文字大戰爭與貓咪 emoji 生成器。更進階串接了綠界 (ECPay) 金流解鎖 AI 聊天分身功能，展現對 Prompt Engineering 與 API 整合的高效掌握。
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-8">
-                            <span class="px-3 py-1 bg-purple-50 text-purple-700 border border-purple-200 text-xs font-bold rounded-md">AI API</span>
-                            <span class="px-3 py-1 bg-pink-50 text-pink-700 border border-pink-200 text-xs font-bold rounded-md">ECPay 金流</span>
-                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-md">Prompt Engineering</span>
-                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-md">JS</span>
-                        </div>
-                        <a href="https://bosscod1.github.io/NATCP-camp-project/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center w-full justify-center px-4 py-3 border border-transparent text-sm font-bold rounded-xl text-white bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-700 hover:to-fuchsia-700 transition-all shadow-md hover:shadow-lg">
-                            造訪實戰專案 <i class="fas fa-rocket ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <ol class="route">
+          <li class="stop">
+            <span class="dot" aria-hidden="true"></span>
+            <h3>取得丙級證照</h3>
+            <p>電腦軟體設計丙級，第一張和程式有關的證照。</p>
+          </li>
+          <li class="stop">
+            <span class="dot" aria-hidden="true"></span>
+            <h3>開始實驗教育自學</h3>
+            <p>自己安排課表和進度，把程式設計排進主要科目。</p>
+          </li>
+          <li class="stop">
+            <span class="dot" aria-hidden="true"></span>
+            <h3>打好網頁基礎</h3>
+            <p>跟著 freeCodeCamp 課程完成 15 個 HTML／CSS 練習。</p>
+          </li>
+          <li class="stop">
+            <span class="dot" aria-hidden="true"></span>
+            <h3>做出自己的網站</h3>
+            <p>把學到的東西用在作品集和自學歷程網站上，放上網路讓別人看得到。</p>
+          </li>
+          <li class="stop">
+            <span class="dot" aria-hidden="true"></span>
+            <h3>NATCP AI 資工營</h3>
+            <p>第一次和隊友合作開發，做出全營唯一有 AI 功能的網站，獲佳作。</p>
+          </li>
+          <li class="stop next">
+            <span class="dot" aria-hidden="true"></span>
+            <span class="next-label">下一站</span>
+            <h3>大學</h3>
+            <p>想把寫程式的能力，用在解決真實世界的問題上。</p>
+          </li>
+        </ol>
+      </div>
     </section>
 
-    <section id="practice-projects" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">微型實作沙盒 (Interactive Sandbox)</h2>
-                <div class="w-24 h-1 bg-blue-600 mx-auto mt-6 rounded-full"></div>
-                <p class="mt-6 max-w-3xl text-lg text-gray-500 mx-auto leading-relaxed">
-                    除了大型專案，扎實的基礎更是技術成長的基石。以下收錄了我針對 CSS 網格 (Grid)、Flexbox、動畫特效、響應式佈局 (RWD) 以及無障礙網頁設計所做的刻意練習。<br/>
-                    <span class="inline-block mt-3 text-blue-600 bg-blue-50 px-4 py-1.5 rounded-full text-sm font-medium border border-blue-100">
-                        <i class="fas fa-lightbulb mr-1"></i> 提示：在電腦版中，可拖曳中央的分隔線來改變視窗寬度，測試「城市天際線」等專案的響應式特效！
-                    </span>
-                </p>
-            </div>
-
-            <!-- 沙盒主容器 -->
-            <div id="sandbox-container" class="flex flex-col lg:flex-row bg-gray-50 rounded-2xl overflow-hidden shadow-2xl border border-gray-200 relative no-select">
-                
-                <!-- 左側：專案選單 (手機版橫向滑動，電腦版直向滾動) -->
-                <!-- 在手機版給予固定小高度，桌面版給予固定高並允許調整寬度 -->
-                <div id="left-pane" class="w-full lg:w-[35%] flex flex-row lg:flex-col gap-3 p-4 bg-gray-100/50 
-                                           overflow-x-auto lg:overflow-x-hidden lg:overflow-y-auto hide-scrollbar 
-                                           max-h-[220px] lg:max-h-[700px] shrink-0 z-10 relative">
-                    <!-- JavaScript 將動態生成按鈕列表於此 -->
-                </div>
-
-                <!-- 拖曳分隔線 (僅在電腦版 lg 以上顯示) -->
-                <div id="drag-splitter" class="hidden lg:flex w-2 bg-gray-200 hover:bg-blue-500 cursor-col-resize items-center justify-center transition-colors shadow-inner z-20" title="左右拖曳調整寬度">
-                    <div class="flex flex-col gap-1 opacity-50">
-                        <div class="w-0.5 h-1 bg-gray-500 rounded-full"></div>
-                        <div class="w-0.5 h-1 bg-gray-500 rounded-full"></div>
-                        <div class="w-0.5 h-1 bg-gray-500 rounded-full"></div>
-                    </div>
-                </div>
-
-                <!-- 右側：程式碼執行預覽視窗 -->
-                <div id="right-pane" class="w-full flex-1 flex flex-col h-[500px] lg:h-[700px] bg-white min-w-[300px] z-10 relative">
-                    <!-- 用於拖曳時遮罩 iframe，避免滑鼠事件遺失 -->
-                    <div id="iframe-overlay" class="absolute inset-0 bg-transparent z-50 hidden"></div>
-                    
-                    <!-- 模擬瀏覽器標題列 -->
-                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200 flex items-center justify-between shrink-0">
-                        <div class="flex gap-1.5">
-                            <div class="w-3 h-3 rounded-full bg-red-400"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
-                            <div class="w-3 h-3 rounded-full bg-green-400"></div>
-                        </div>
-                        <div class="mx-4 bg-white rounded-md px-3 py-1.5 text-xs text-gray-500 flex-grow shadow-sm border border-gray-200 flex items-center gap-2 max-w-md overflow-hidden truncate">
-                            <i class="fas fa-lock text-gray-400"></i>
-                            <span id="browser-url" class="truncate font-mono">local://sandbox/loading</span>
-                        </div>
-                        <div class="text-gray-400 text-xs">
-                            <i class="fas fa-desktop"></i>
-                        </div>
-                    </div>
-                    
-                    <!-- 專案描述區塊 -->
-                    <div class="px-6 py-4 bg-white border-b border-gray-100 shrink-0">
-                        <h3 id="preview-title" class="text-lg font-bold text-gray-900">載入中...</h3>
-                        <p id="preview-desc" class="text-sm text-gray-500 mt-1.5 leading-relaxed line-clamp-2" title="詳細描述">載入中...</p>
-                    </div>
-
-                    <!-- Iframe 預覽區域 -->
-                    <div class="flex-grow bg-white w-full relative">
-                        <iframe 
-                            id="preview-frame" 
-                            class="absolute inset-0 w-full h-full border-none bg-white"
-                            title="Project Preview"
-                            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-                        ></iframe>
-                    </div>
-                </div>
-
-            </div>
+    <!-- 上線作品 -->
+    <section id="works">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>上線作品</h2>
+          <p>這三個網站是我自己（或和隊友一起）從規劃到上線完成的，點「打開網站」就能看到實際運作的版本。</p>
         </div>
+
+        <article class="work">
+          <header>
+            <h3>我的第一個作品集網站</h3>
+          </header>
+          <p class="oneline">在 freeCodeCamp 學習時做的作品集網站，收錄課程的認證專題、JavaScript 練習，還有一頁我的讀書清單。</p>
+          <div class="cols">
+            <div>
+              <h4>這是什麼</h4>
+              <p>freeCodeCamp 的響應式網頁認證要完成五種專題：問卷表單、致敬頁、技術文件頁、產品介紹頁和個人作品集。題型是課程規定的，但主題和內容由我自己決定，例如耶穌基督致敬頁、加密貨幣技術文件、Cardano 產品頁。</p>
+            </div>
+            <div>
+              <h4>我做了什麼</h4>
+              <ul>
+                <li>五種專題每一種都做了兩個版本，第二版改進第一版的不足</li>
+                <li>另外整理一頁 JavaScript 練習</li>
+                <li>做一頁讀書清單，記錄讀過的書</li>
+                <li>把所有作品集中在同一個網站，用導覽列串起來</li>
+              </ul>
+            </div>
+            <div>
+              <h4>我練到了什麼</h4>
+              <p>這是我第一次面對空白頁面，自己決定內容、版面和配色，而不是照著步驟做。同一個專題做兩次，也讓我看見自己從第一版到第二版進步了什麼。</p>
+            </div>
+          </div>
+          <footer>
+            <span class="tech">HTML　CSS　JavaScript</span>
+            <a class="visit" href="https://bosscod1.github.io/PortfolioPage/" target="_blank" rel="noopener noreferrer">打開網站</a>
+          </footer>
+        </article>
+
+        <article class="work">
+          <header>
+            <h3>實驗教育自學歷程網站</h3>
+          </header>
+          <p class="oneline">給實驗教育訪視委員看的學習成果網站，依科目整理我在資訊、數學、英文、閱讀、體育、課外活動和藝術的學習，最後是我的學習反思。</p>
+          <div class="cols">
+            <div>
+              <h4>這是什麼</h4>
+              <p>實驗教育每學期都要接受訪視、交學習紀錄。比起交一疊紙本，我決定把它做成網站，讓委員可以依科目點進去，直接看到學習平台、作品和活動紀錄。</p>
+            </div>
+            <div>
+              <h4>我做了什麼</h4>
+              <ul>
+                <li>依科目分區，連到各科使用的學習平台與作品</li>
+                <li>整理 H2GP 氫能車、兒少表意活動、營隊等課外經歷</li>
+                <li>寫一段自學期間的成長與反思</li>
+              </ul>
+            </div>
+            <div>
+              <h4>我練到了什麼</h4>
+              <p>第一次用 React 和 Tailwind CSS，並搭配 AI 協助開發。這也是第一個有「真正讀者」的網站，我開始站在看的人的角度想：委員時間有限，什麼要放前面、資料怎麼分類才好找。</p>
+            </div>
+          </div>
+          <footer>
+            <span class="tech">React　Tailwind CSS　AI 協作開發</span>
+            <a class="visit" href="https://bosscod1.github.io/portfolio/" target="_blank" rel="noopener noreferrer">打開網站</a>
+          </footer>
+        </article>
+
+        <article class="work">
+          <header>
+            <h3>Alan 的求職網站</h3>
+            <span class="award">清交 NATCP AI 資工營　結業專題佳作</span>
+          </header>
+          <p class="oneline">營隊的分組專題：以虛構高中生 Alan 為主角的求職網站，介面做成電腦終端機（Terminal）的樣子，使用者也能把頭像和名字換成自己的。我們是全營唯一加入 AI 功能的組別。</p>
+          <h4 class="sub">網站裡的三個 AI 作品</h4>
+          <dl class="features">
+            <div>
+              <dt>極客語氣轉換器</dt>
+              <dd>輸入一段日常的白話文，AI 會把它改寫成資深工程師那種精簡、冷靜、邏輯清楚的說話方式。</dd>
+            </div>
+            <div>
+              <dt>文字角色大戰爭</dt>
+              <dd>輸入兩個完全不同的角色，AI 會化身電競主播，轉播一場三回合的文字對戰，最後宣布贏家。</dd>
+            </div>
+            <div>
+              <dt>貓咪 emoji 生成器</dt>
+              <dd>輸入任何一個 emoji，影像生成 AI 會畫出一張融合它特徵的貓咪 emoji。這裡串接了綠界（ECPay）金流，付款後可以解鎖更多張圖片的生成額度。</dd>
+            </div>
+          </dl>
+          <p class="others">其他功能：中英文切換、亮暗模式切換、終端機風格的開場動畫，以及可以和 Alan 的 AI 數位分身對話的聊天室。</p>
+          <div class="cols two">
+            <div>
+              <h4>我負責的部分</h4>
+              <p>全組一起發想網站點子之後，由我負責撰寫給 AI 開發工具（Claude Code、Gemini）的提示詞，並審查 AI 產出的程式碼；完成後全組再一起測試功能和穩定度。</p>
+            </div>
+            <div>
+              <h4>我練到了什麼</h4>
+              <p>營隊教的是怎麼更有效率地和 AI 合作：把需求描述得精準、節省 token，同時維持產出的品質。負責審查程式碼也讓我體會到，AI 寫得很快，但要看懂它、判斷它對不對，還是得靠自己的基礎。</p>
+            </div>
+          </div>
+          <footer>
+            <span class="tech">JavaScript　Claude Code　Gemini　影像生成 AI　ECPay 金流</span>
+            <a class="visit" href="https://bosscod1.github.io/NATCP-camp-project/" target="_blank" rel="noopener noreferrer">打開網站</a>
+          </footer>
+        </article>
+      </div>
     </section>
 
-    <footer class="bg-gray-900 py-12 border-t border-gray-800 mt-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-2">
-                <i class="fas fa-terminal text-gray-400"></i>
-                <span class="text-gray-300 font-semibold tracking-wider">PortfolioHub</span>
-            </div>
-            <p class="text-gray-500 text-sm">
-                &copy; 2026 個人程式作品集 - 專為特殊選才備審設計. All rights reserved.
-            </p>
-            <div class="flex gap-4">
-                <a href="#" class="text-gray-500 hover:text-white transition"><i class="fab fa-github text-xl"></i></a>
-            </div>
+    <!-- 練習沙盒 -->
+    <section id="lab">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>網頁基礎練習</h2>
+          <p>這 15 個是我打網頁基礎時做的練習，依照學習順序排列。點選左邊的清單，右邊會直接執行那份程式碼，也可以切換手機、平板、電腦的畫面寬度，或打開原始碼來看。</p>
         </div>
-    </footer>
+        <div class="note-box">
+          <p>這些練習來自 freeCodeCamp 的「響應式網頁設計」課程，題目和版面是課程設計好的，我照著步驟一行一行把它們寫出來。我想放上來的不是「作品有多漂亮」，而是我怎麼一個觀念、一個觀念把基礎補起來。每個練習下面都寫了我在裡面練到的重點。</p>
+        </div>
 
-    <script>
-        // 資料結構：儲存所有實作沙盒的程式碼專案
-        const practiceData = [
-            {
-                id: 'cat-photo-app',
-                title: 'CatPhotoApp (HTML 語意化基礎)',
-                urlTag: 'cat-photo-app.html',
-                description: '網頁開發的啟蒙練習。透過這個專案，我熟悉了 HTML 的語意化標籤 (semantic tags)、表單建構與媒體元素的正確置入方式。',
-                icon: 'fa-cat',
-                code: `<!DOCTYPE html>
+        <div class="lab" id="lab-box">
+          <nav class="lab-list" id="lab-list" aria-label="練習清單"></nav>
+          <div class="lab-main">
+            <div class="lab-bar">
+              <h3 id="lab-title">載入中</h3>
+              <div class="controls" role="group" aria-label="預覽設定">
+                <button type="button" data-width="375">手機</button>
+                <button type="button" data-width="768">平板</button>
+                <button type="button" data-width="1280">電腦</button>
+                <span class="sep" aria-hidden="true"></span>
+                <button type="button" id="code-toggle" aria-pressed="false">看程式碼</button>
+              </div>
+            </div>
+            <div class="stage">
+              <iframe id="lab-frame" title="練習作品預覽" referrerpolicy="no-referrer" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+              <span class="scale-note" id="scale-note"></span>
+            </div>
+            <pre class="codeview" id="lab-code"><code></code></pre>
+            <div class="lab-notes">
+              <div>
+                <h4>這個練習在做什麼</h4>
+                <p id="lab-what"></p>
+                <p class="hint" id="lab-hint" hidden></p>
+              </div>
+              <div>
+                <h4>我練到的觀念</h4>
+                <ul id="lab-points"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <p>© 2026 鍾友銓 Peter</p>
+          </div>
+  </footer>
+
+  <script>
+    // 練習資料：依學習順序排列。what = 這個練習在做什麼，points = 我練到的觀念
+    const practiceData = [
+      {
+        id: 'cat-photo-app', group: 'HTML 入門', title: '貓咪相簿', en: 'Cat Photo App',
+        what: '我寫的第一個網頁。內容是一個介紹貓咪的頁面，有圖片、清單和一個簡單的問卷表單，重點是把 HTML 的骨架搭對。',
+        points: [
+          '用 `main`、`section`、`figure`、`figcaption` 等語意化標籤，讓網頁結構有意義，而不是全部用 `div`',
+          '有序清單 `ol` 和無序清單 `ul` 的差別',
+          '表單的基本組成：`fieldset`、`legend`、`label`，以及 radio 要用同一個 `name` 才會互斥',
+          '圖片一定要寫 `alt` 替代文字，這是之後學無障礙設計的起點'
+        ],
+        code: `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -333,14 +564,17 @@
     </footer>
   </body>
 </html>`
-            },
-            {
-                id: 'cafe-menu',
-                title: 'Cafe Menu (CSS 樣式設計)',
-                urlTag: 'cafe-menu.html',
-                description: 'CSS 排版的初體驗。學習使用類別 (Class)、ID 選擇器來精確套用樣式，並掌握字體、顏色、背景圖與內外邊距的視覺調校。',
-                icon: 'fa-mug-hot',
-                code: `<!DOCTYPE html>
+      },
+      {
+        id: 'cafe-menu', group: 'CSS 基礎', title: '咖啡廳菜單', en: 'Cafe Menu',
+        what: '一份咖啡廳的菜單。HTML 寫好之後，第一次大量用 CSS 去調整外觀：背景、字體、間距、對齊。',
+        points: [
+          '用 `class` 選擇器把同一種樣式套用到很多元素上',
+          '`margin-left: auto; margin-right: auto;` 讓區塊水平置中，搭配 `max-width` 限制寬度',
+          '把品名和價格用 `display: inline-block` 加上 75%／25% 的寬度排在同一行',
+          '連結的四種狀態：`:link`、`:visited`、`:hover`、`:active`'
+        ],
+        code: `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -422,14 +656,17 @@
     </div>
   </body>
 </html>`
-            },
-            {
-                id: 'color-markers',
-                title: 'CSS Color Markers (進階漸層)',
-                urlTag: 'color-markers.html',
-                description: '探索 CSS 色彩設定的奧秘。熟練運用 RGB、HEX 與 HSL 格式，並實作線性漸層 (linear-gradient) 與陰影 (box-shadow) 打造立體視覺效果。',
-                icon: 'fa-highlighter',
-                code: `<!DOCTYPE html>
+      },
+      {
+        id: 'color-markers', group: 'CSS 基礎', title: '彩色麥克筆', en: 'Colored Markers',
+        what: '用純 CSS 畫出三支麥克筆。每一支故意用不同的顏色寫法，目的是把 CSS 表示顏色的各種方式都練一遍。',
+        points: [
+          '同一個顏色的三種寫法：`rgb()`、十六進位 `#HEX`、`hsl()`',
+          '透明度：`rgba()` 和 8 位數的十六進位色碼（最後兩碼是透明度）',
+          '`linear-gradient()` 放多個顏色節點做出筆身的立體感',
+          '`box-shadow` 做發光效果、`border-left: double` 做出筆套上的雙線'
+        ],
+        code: `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -456,14 +693,17 @@
     </div>
   </body>
 </html>`
-            },
-            {
-                id: 'registration-form',
-                title: 'Registration Form (表單設計)',
-                urlTag: 'registration-form.html',
-                description: '建構互動式網頁的關鍵組件。熟練操作各類表單元素 (radio, checkbox, select)，並為其套用一致且專業的暗色系質感主題。',
-                icon: 'fa-clipboard-list',
-                code: `<!DOCTYPE html>
+      },
+      {
+        id: 'registration-form', group: 'CSS 基礎', title: '會員註冊表單', en: 'Registration Form',
+        what: '一個會員註冊頁。表單是網站和使用者互動最常見的地方，這個練習把各種輸入欄位都用過一次，並統一成深色風格。',
+        points: [
+          '不同的 `input` 類型：`email`、`password`、`number`、`file`，瀏覽器會自動幫忙檢查格式',
+          '用 `required`、`pattern`、`min`／`max` 做基本的輸入驗證',
+          '`select`、`option`、`textarea` 等其他表單元件',
+          '屬性選擇器 `input[type="submit"]` 和 `fieldset:last-of-type` 精準選到要改的元素'
+        ],
+        code: `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -520,14 +760,17 @@
     </form>
   </body>
 </html>`
-            },
-            {
-                id: 'rothko-painting',
-                title: 'Rothko Painting (CSS 繪圖與濾鏡)',
-                urlTag: 'rothko-painting.html',
-                description: '跳脫框架的純代碼藝術 (CSS Art) 創作。巧妙運用 CSS 的 filter 模糊濾鏡、多重陰影以及 transform 微幅旋轉，模擬出真實畫作邊緣的筆觸與斑駁感。',
-                icon: 'fa-palette',
-                code: `<!DOCTYPE html>
+      },
+      {
+        id: 'rothko-painting', group: 'CSS 基礎', title: '羅斯科畫作', en: 'Rothko Painting',
+        what: '模仿畫家羅斯科（Mark Rothko）的色塊畫。整張畫沒有用任何圖片，全部是 CSS 的方塊，再想辦法讓邊緣看起來像手畫的。',
+        points: [
+          '理解盒模型（box model）：`border`、`padding`、`margin` 怎麼一層層包住內容',
+          '`filter: blur()` 把方塊邊緣弄模糊，模擬顏料暈開',
+          '`transform: rotate()` 只轉零點幾度，讓色塊不要太整齊',
+          '`border-radius` 給四個角不同的數值，做出不規則的形狀'
+        ],
+        code: `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -551,14 +794,18 @@
     </div>
   </body>
 </html>`
-            },
-            {
-                id: 'photo-gallery',
-                title: 'Photo Gallery (Flexbox 排版)',
-                urlTag: 'photo-gallery.html',
-                description: '現代響應式網頁的核心基礎。實踐 CSS Flexbox 彈性盒子模型，設定自動換行與間距均分，打造出能適應任何設備寬度的流暢照片牆。',
-                icon: 'fa-images',
-                code: `<!DOCTYPE html>
+      },
+      {
+        id: 'photo-gallery', group: '版面排版', title: '照片牆', en: 'Photo Gallery',
+        what: '一面會自動排列的照片牆。視窗變寬，一排就放更多張；變窄就自動換行。這是我第一次接觸 Flexbox。',
+        points: [
+          '`display: flex` 配合 `flex-wrap: wrap` 讓元素放不下時自動換行',
+          '`justify-content` 和 `gap` 控制每張照片之間的距離與對齊',
+          '`object-fit: cover` 讓尺寸不同的照片裁成一樣大小又不變形',
+          '用 `::after` 偽元素補一個空格子，讓最後一排不會被擠到中間'
+        ],
+        hint: '切換上方的「手機／平板／電腦」，看照片怎麼重新排列。',
+        code: `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -590,14 +837,17 @@
     </div>
   </body>
 </html>`
-            },
-            {
-                id: 'nutrition-label',
-                title: 'Nutrition Label (微距排版與 Typography)',
-                urlTag: 'nutrition-label.html',
-                description: '對細節的極致追求。精準控制字級粗細、邊界間距與底線樣式，完美復刻真實生活的營養標籤，展現處理高密度資訊排版的穩定性。',
-                icon: 'fa-receipt',
-                code: `<!DOCTYPE html>
+      },
+      {
+        id: 'nutrition-label', group: '版面排版', title: '營養標示', en: 'Nutrition Label',
+        what: '照著食品包裝上的營養標示做一份網頁版。內容很密、線條很多，考驗的是把字級、粗細、間距一個一個對齊的耐心。',
+        points: [
+          '載入 Google Fonts，並用 400／700／800 不同粗細做出層次',
+          '在一行文字裡用 `display: flex` 加 `justify-content: space-between` 把項目和數值推到兩邊',
+          '`:not()` 選擇器：除了某些元素以外都加上底線',
+          '`rem` 和 `em` 兩種相對單位的差別，以及用負的 `margin` 微調位置'
+        ],
+        code: `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -673,14 +923,17 @@
   </div>
 </body>
 </html>`
-            },
-            {
-                id: 'accessibility-quiz',
-                title: 'Accessibility Quiz (無障礙網頁設計)',
-                urlTag: 'accessibility-quiz.html',
-                description: '現代工程師不可或缺的素養 (A11y)。實作語意化標籤、aria 屬性與 Screen Reader 專用類別，確保視覺障礙者也能友善使用，體現科技的人文關懷。',
-                icon: 'fa-universal-access',
-                code: `<!DOCTYPE html>
+      },
+      {
+        id: 'accessibility-quiz', group: '版面排版', title: '無障礙測驗頁', en: 'Accessibility Quiz',
+        what: '一份線上小測驗。外觀很普通，但重點在看不到的地方：讓使用螢幕閱讀器的視障者，也能順利讀懂並填寫這份測驗。',
+        points: [
+          '`.sr-only` 類別：畫面上看不到，但螢幕閱讀器會念出來的文字',
+          '`role="region"` 和 `aria-labelledby` 告訴輔助科技每個區塊的名稱',
+          '`@media (prefers-reduced-motion)`：尊重不想看到動態效果的使用者',
+          '`min()`、`max()` 函數和 `aspect-ratio`，讓標題和 logo 隨螢幕大小縮放'
+        ],
+        code: `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -749,14 +1002,17 @@
     </main>
   </body>
 </html>`
-            },
-            {
-                id: 'balance-sheet',
-                title: 'Balance Sheet (表格進階排版)',
-                urlTag: 'balance-sheet.html',
-                description: '解決棘手的 Table 排版難題。巧用 position: sticky 固定表頭，搭配 calc() 計算寬度與 CSS 進階選擇器繪製專業的財務報表結構。',
-                icon: 'fa-file-invoice-dollar',
-                code: `<!DOCTYPE html>
+      },
+      {
+        id: 'balance-sheet', group: '版面排版', title: '資產負債表', en: 'Balance Sheet',
+        what: '一份公司的資產負債表。表格是網頁裡最難排整齊的東西之一，這個練習要讓數字對齊、年份欄固定在上方，而且螢幕閱讀器也讀得懂。',
+        points: [
+          '表格的完整結構：`caption`、`thead`、`tbody`、`th`、`td`',
+          '`position: sticky` 讓年份列在捲動時固定在畫面上方',
+          '`calc()` 混合百分比和固定單位計算欄寬',
+          '`linear-gradient` 不做漸層，而是用「硬切」的色標畫出每列的底色'
+        ],
+        code: `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -810,14 +1066,17 @@
     </main>
   </body>
 </html>`
-            },
-            {
-                id: 'cat-painting',
-                title: 'Cat Painting (純 CSS 繪圖極限)',
-                urlTag: 'cat-painting.html',
-                description: '摒棄圖片素材，單憑對幾何空間、絕對定位與 border-radius 的深刻理解，以純代碼一點一滴刻劃出栩栩如生的貓咪頭像。',
-                icon: 'fa-paw',
-                code: `<!DOCTYPE html>
+      },
+      {
+        id: 'cat-painting', group: 'CSS 繪圖與響應式', title: '貓咪畫像', en: 'Cat Painting',
+        what: '只用 CSS 畫出一隻貓的臉。耳朵、眼睛、鼻子、鬍鬚每一個部位都是一個 div，靠定位和形狀一點一點拼出來。',
+        points: [
+          '`position: absolute` 搭配 `top`／`left`，把每個部位放到精確的位置',
+          '把 `border` 設成透明再只留一邊，就能畫出三角形（貓耳朵和鼻子）',
+          '`border-radius` 用百分比和斜線寫法做出橢圓、弧線等形狀',
+          '`z-index` 決定哪個部位疊在上面'
+        ],
+        code: `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -863,14 +1122,18 @@
     </main>
 </body>
 </html>`
-            },
-            {
-                id: 'piano',
-                title: 'Piano (完美響應式元件)',
-                urlTag: 'piano.html',
-                description: '現代網站必備的 RWD 觀念。透過 Media Query 自動適配螢幕寬度，並活用 ::after 偽元素優雅地疊加鋼琴黑鍵，大幅精簡 DOM 結構。',
-                icon: 'fa-music',
-                code: `<!DOCTYPE html>
+      },
+      {
+        id: 'piano', group: 'CSS 繪圖與響應式', title: '鋼琴鍵盤', en: 'Piano',
+        what: '用 CSS 做一排鋼琴鍵盤。我自己會彈鋼琴，所以做這個練習特別有感覺。重點是用很少的 HTML 做出黑白鍵，並在不同螢幕寬度下自動縮放。',
+        points: [
+          '`::after` 偽元素：黑鍵不是另外寫的元素，而是疊在白鍵上的「影子」，讓 HTML 簡潔很多',
+          '`@media` 媒體查詢設定兩個斷點，手機、平板、電腦各有適合的寬度',
+          '`box-sizing: inherit` 讓所有元素統一計算尺寸的方式',
+          '`float` 讓琴鍵橫向排列'
+        ],
+        hint: '切換上方的「手機／平板／電腦」，鋼琴的寬度會跟著改變。',
+        code: `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -899,14 +1162,18 @@
     </div>
   </body>
 </html>`
-            },
-            {
-                id: 'city-skyline',
-                title: 'City Skyline (動態變數與日夜切換)',
-                urlTag: 'city-skyline.html',
-                description: '請拖曳畫面中線測試！此專案展示了強大的 CSS 變數 (:root) 管理。不僅用多重漸層堆疊出城市風貌，更藉由視窗大小變化觸發 Media Query 瞬間切換日夜景。',
-                icon: 'fa-city',
-                code: `<!DOCTYPE html>
+      },
+      {
+        id: 'city-skyline', group: 'CSS 繪圖與響應式', title: '城市天際線', en: 'City Skyline',
+        what: '用 CSS 畫出一整排大樓。畫面寬度超過 1000px 時是白天，變窄之後會切換成夜景，整個變化只靠改幾個顏色變數就完成。',
+        points: [
+          'CSS 變數：在 `:root` 定義大樓和窗戶的顏色，之後全部用 `var()` 引用',
+          '`@media` 裡只重新設定變數的值，整座城市就從白天變成晚上',
+          '`repeating-linear-gradient` 畫出一格一格的窗戶，不用真的寫一堆窗戶元素',
+          '用 Flexbox 的 `align-items: flex-end` 讓高矮不同的大樓都站在同一條地平線上'
+        ],
+        hint: '預設的「電腦」寬度是白天，切到「平板」或「手機」就會變成夜景。',
+        code: `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -965,14 +1232,18 @@
     </div>
   </body>
 </html>`
-            },
-            {
-                id: 'magazine',
-                title: 'Magazine (CSS Grid 雜誌矩陣)',
-                urlTag: 'magazine.html',
-                description: '掌握最複雜的網格排版系統 (CSS Grid)。結合 column-width 實作多欄文字，並載入外部字體，在網頁上重現實體雜誌的豐富層次與專業質感。',
-                icon: 'fa-book-open',
-                code: `<!DOCTYPE html>
+      },
+      {
+        id: 'magazine', group: 'CSS 繪圖與響應式', title: '雜誌版面', en: 'Magazine',
+        what: '把一篇文章排成雜誌的樣子：大標題、作者資訊、分欄文字、圖文並排。這是我第一次用 CSS Grid 規劃整頁的版面。',
+        points: [
+          '`grid-template-columns` 搭配 `minmax()`，讓中間的內容欄有最大寬度、兩側自動留白',
+          '`grid-column: 1 / -1` 讓某個區塊橫跨整排',
+          '`column-width` 讓文字像報紙一樣自動分成好幾欄',
+          '`::first-letter` 把段落第一個字放大，做出雜誌常見的首字放大效果'
+        ],
+        hint: '切到「手機」，圖文並排會自動改成上下排列。',
+        code: `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -1041,14 +1312,17 @@
     </main>
   </body>
 </html>`
-            },
-            {
-                id: 'ferris-wheel',
-                title: 'Ferris Wheel (物理運動模擬動畫)',
-                urlTag: 'ferris-wheel.html',
-                description: '進階的純 CSS 動畫 (@keyframes)。巧妙設定外圈正轉與座艙反轉，使得摩天輪能順暢運轉，且座艙能符合真實物理直立不倒，邏輯性極強。',
-                icon: 'fa-dharmachakra',
-                code: `<!DOCTYPE html>
+      },
+      {
+        id: 'ferris-wheel', group: 'CSS 動畫', title: '摩天輪', en: 'Ferris Wheel',
+        what: '一座會轉的摩天輪。難的地方是：輪子轉的時候，座艙如果跟著一起轉就會倒過來，所以要想辦法讓座艙一直保持朝下。',
+        points: [
+          '`@keyframes` 定義動畫的每個階段，再用 `animation` 套用並無限循環',
+          '解法是讓輪子轉 +360 度、座艙反方向轉 −360 度，兩個抵銷後座艙就會保持直立',
+          '`transform-origin` 改變旋轉的中心點，讓座艙從頂端吊著晃',
+          '`:nth-of-type()` 一次把六支輪輻和六個座艙放到不同位置'
+        ],
+        code: `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -1071,14 +1345,18 @@
     </div>
   </body>
 </html>`
-            },
-            {
-                id: 'penguin',
-                title: 'Penguin (互動式連續動畫)',
-                urlTag: 'penguin.html',
-                description: '請用滑鼠長按企鵝！此專案除了運用 z-index 與變形切割畫面，更結合了 @keyframes 揮手動畫與 :active 偽類達成的點擊回饋，互動感十足。',
-                icon: 'fa-linux',
-                code: `<!DOCTYPE html>
+      },
+      {
+        id: 'penguin', group: 'CSS 動畫', title: '揮手企鵝', en: 'Penguin',
+        what: '一隻站在冰山前會揮手的企鵝，用滑鼠按住牠還會放大。這個練習把前面學過的定位、變形、變數和動畫全部用上。',
+        points: [
+          '`@keyframes` 做出揮手：在幾個時間點之間來回改變手臂的旋轉角度',
+          '`:active` 偽類加上 `transition`，按住時企鵝會平滑放大',
+          '`transform: skew()` 和 `rotate()` 把方塊變形成山的形狀',
+          '用 `z-index` 安排山、企鵝、地面的前後關係'
+        ],
+        hint: '用滑鼠按住企鵝不放。',
+        code: `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -1126,134 +1404,117 @@
     <div class="ground"></div>
   </body>
 </html>`
-            }
-        ];
+      }
+    ];
 
-        let currentActiveId = null;
+    const listEl = document.getElementById('lab-list');
+    const frame = document.getElementById('lab-frame');
+    const codeEl = document.querySelector('#lab-code code');
+    const labBox = document.getElementById('lab-box');
+    const codeToggle = document.getElementById('code-toggle');
+    let currentId = null;
 
-        // 初始化左側專案清單
-        function initPracticeSection() {
-            const container = document.getElementById('left-pane');
-            container.innerHTML = '';
-
-            practiceData.forEach((project, index) => {
-                const btn = document.createElement('button');
-                // 手機版使用橫向卡片縮圖，電腦版直向排列
-                btn.className = `shrink-0 w-64 lg:w-full text-left px-4 py-3.5 rounded-xl border-2 transition-all duration-200 flex flex-col lg:flex-row lg:items-center gap-3 ${
-                    index === 0 
-                    ? 'bg-blue-50/50 border-blue-400 shadow-sm' 
-                    : 'bg-white border-transparent text-gray-600 hover:bg-gray-100/80 hover:border-gray-200'
-                }`;
-                btn.id = `btn-${project.id}`;
-                btn.onclick = () => loadProject(project.id);
-
-                btn.innerHTML = `
-                    <div class="w-10 h-10 rounded-lg flex shrink-0 items-center justify-center ${index === 0 ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 text-gray-500'} transition-colors btn-icon-container">
-                        <i class="fas ${project.icon || 'fa-code'}"></i>
-                    </div>
-                    <div class="flex-grow min-w-0">
-                        <div class="font-bold text-sm truncate ${index === 0 ? 'text-blue-900' : 'text-gray-700'} btn-title">${project.title}</div>
-                        <div class="text-xs text-gray-500 mt-1 truncate">點擊載入預覽</div>
-                    </div>
-                `;
-                container.appendChild(btn);
-            });
-
-            if (practiceData.length > 0) {
-                loadProject(practiceData[0].id);
-            }
+    // 依群組產生左側清單
+    function buildList() {
+      let lastGroup = '';
+      practiceData.forEach((p, i) => {
+        if (p.group !== lastGroup) {
+          const h = document.createElement('h4');
+          h.textContent = p.group;
+          listEl.appendChild(h);
+          lastGroup = p.group;
         }
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'lab-item';
+        btn.dataset.id = p.id;
+        btn.innerHTML = `${i + 1}. ${p.title}<small>${p.en}</small>`;
+        btn.addEventListener('click', () => loadPractice(p.id));
+        listEl.appendChild(btn);
+      });
+    }
 
-        // 載入專案到 Iframe
-        function loadProject(id) {
-            if (currentActiveId === id) return;
-            currentActiveId = id;
+    function loadPractice(id) {
+      if (id === currentId) return;
+      const p = practiceData.find(item => item.id === id);
+      if (!p) return;
+      currentId = id;
 
-            const project = practiceData.find(p => p.id === id);
-            if (!project) return;
+      listEl.querySelectorAll('.lab-item').forEach(btn => {
+        btn.setAttribute('aria-current', btn.dataset.id === id ? 'true' : 'false');
+      });
 
-            // 更新按鈕樣式切換
-            practiceData.forEach(p => {
-                const btn = document.getElementById(`btn-${p.id}`);
-                const iconContainer = btn.querySelector('.btn-icon-container');
-                const titleText = btn.querySelector('.btn-title');
-                if (p.id === id) {
-                    btn.className = 'shrink-0 w-64 lg:w-full text-left px-4 py-3.5 rounded-xl border-2 transition-all duration-200 flex flex-col lg:flex-row lg:items-center gap-3 bg-blue-50/50 border-blue-400 shadow-sm';
-                    iconContainer.className = 'w-10 h-10 rounded-lg flex shrink-0 items-center justify-center bg-blue-600 text-white shadow-md transition-colors btn-icon-container';
-                    titleText.className = 'font-bold text-sm truncate text-blue-900 btn-title';
-                    
-                    // 手機版自動捲動到被點擊的按鈕
-                    if (window.innerWidth < 1024) {
-                        btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                    }
-                } else {
-                    btn.className = 'shrink-0 w-64 lg:w-full text-left px-4 py-3.5 rounded-xl border-2 transition-all duration-200 flex flex-col lg:flex-row lg:items-center gap-3 bg-white border-transparent text-gray-600 hover:bg-gray-100/80 hover:border-gray-200';
-                    iconContainer.className = 'w-10 h-10 rounded-lg flex shrink-0 items-center justify-center bg-gray-100 text-gray-500 transition-colors btn-icon-container';
-                    titleText.className = 'font-bold text-sm truncate text-gray-700 btn-title';
-                }
-            });
+      document.getElementById('lab-title').textContent = `${p.title}（${p.en}）`;
+      document.getElementById('lab-what').textContent = p.what;
 
-            // 更新預覽區的標題與描述
-            document.getElementById('browser-url').textContent = `local://sandbox/${project.urlTag}`;
-            document.getElementById('preview-title').textContent = project.title;
-            document.getElementById('preview-desc').textContent = project.description;
+      const hint = document.getElementById('lab-hint');
+      hint.hidden = !p.hint;
+      hint.textContent = p.hint ? `試試看：${p.hint}` : '';
 
-            // 將 HTML 注入 Iframe
-            const iframe = document.getElementById('preview-frame');
-            iframe.srcdoc = project.code;
-        }
+      const ul = document.getElementById('lab-points');
+      ul.innerHTML = '';
+      p.points.forEach(text => {
+        const li = document.createElement('li');
+        // 用反引號包住的字當成程式碼顯示
+        li.innerHTML = text
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+          .replace(/`([^`]+)`/g, '<code>$1</code>');
+        ul.appendChild(li);
+      });
 
-        const splitter = document.getElementById('drag-splitter');
-        const leftPane = document.getElementById('left-pane');
-        const sandboxContainer = document.getElementById('sandbox-container');
-        const iframeOverlay = document.getElementById('iframe-overlay');
-        let isResizing = false;
+      frame.srcdoc = p.code;
+      codeEl.textContent = p.code;
+    }
 
-        splitter.addEventListener('mousedown', (e) => {
-            isResizing = true;
-            document.body.style.cursor = 'col-resize';
-            // 啟用遮罩防止滑鼠事件被 iframe 吞噬
-            iframeOverlay.classList.remove('hidden');
-            e.preventDefault(); 
-        });
+    // 預覽寬度切換：手機 375px／平板 768px／電腦 1280px
+    const stage = document.querySelector('.stage');
+    const scaleNote = document.getElementById('scale-note');
+    let deviceWidth = window.innerWidth < 700 ? 375 : 1280;
 
-        window.addEventListener('mousemove', (e) => {
-            if (!isResizing) return;
-            // 僅在桌面版寬度以上才允許縮放
-            if (window.innerWidth >= 1024) {
-                const containerRect = sandboxContainer.getBoundingClientRect();
-                let newWidthPercentage = ((e.clientX - containerRect.left) / containerRect.width) * 100;
-                
-                // 限制左側選單的縮放範圍 (20% 到 50%)
-                if (newWidthPercentage < 20) newWidthPercentage = 20;
-                if (newWidthPercentage > 50) newWidthPercentage = 50;
-                
-                leftPane.style.width = `${newWidthPercentage}%`;
-            }
-        });
+    function fitFrame() {
+      const pad = 16;
+      const availW = stage.clientWidth - pad * 2;
+      const availH = stage.clientHeight - pad * 2;
+      if (availW <= 0) return;
+      const scale = Math.min(1, availW / deviceWidth);
+      frame.style.width = deviceWidth + 'px';
+      frame.style.height = (availH / scale) + 'px';
+      frame.style.transform = `scale(${scale})`;
+      frame.style.left = (pad + (availW - deviceWidth * scale) / 2) + 'px';
+      scaleNote.textContent = scale < 1
+        ? `實際寬度 ${deviceWidth}px，縮小為 ${Math.round(scale * 100)}% 顯示`
+        : `實際寬度 ${deviceWidth}px`;
+    }
 
-        window.addEventListener('mouseup', () => {
-            if (isResizing) {
-                isResizing = false;
-                document.body.style.cursor = 'default';
-                // 移除 iframe 遮罩
-                iframeOverlay.classList.add('hidden');
-            }
-        });
+    function setDevice(w) {
+      deviceWidth = w;
+      document.querySelectorAll('[data-width]').forEach(b => {
+        b.setAttribute('aria-pressed', String(Number(b.dataset.width) === w));
+      });
+      fitFrame();
+    }
 
-        // 當視窗縮小至手機版時，重置左側寬度避免跑版
-        window.addEventListener('resize', () => {
-            if (window.innerWidth < 1024) {
-                leftPane.style.width = '100%';
-            } else if (!leftPane.style.width || leftPane.style.width === '100%') {
-                leftPane.style.width = '35%'; // 預設桌面版比例
-            }
-        });
+    document.querySelectorAll('[data-width]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        labBox.classList.remove('show-code');
+        codeToggle.setAttribute('aria-pressed', 'false');
+        codeToggle.textContent = '看程式碼';
+        setDevice(Number(btn.dataset.width));
+      });
+    });
+    window.addEventListener('resize', fitFrame);
 
-        // 當網頁載入完成後執行初始化
-        window.onload = function() {
-            initPracticeSection();
-        };
-    </script>
+    // 切換程式碼／預覽
+    codeToggle.addEventListener('click', () => {
+      const showing = labBox.classList.toggle('show-code');
+      codeToggle.setAttribute('aria-pressed', String(showing));
+      codeToggle.textContent = showing ? '看執行結果' : '看程式碼';
+      if (!showing) fitFrame();
+    });
+
+    buildList();
+    setDevice(deviceWidth);
+    loadPractice(practiceData[0].id);
+  </script>
 </body>
 </html>
