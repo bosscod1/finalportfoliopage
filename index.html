@@ -94,7 +94,7 @@
     }
     .stat b { display: block; font-family: var(--mono); font-size: 2.6rem; line-height: 1.1; color: var(--acc); }
     .stat b small { font-family: var(--body); font-size: 0.45em; margin-right: 2px; }
-    .stat span { font-size: 0.9rem; color: var(--muted); }
+    .stat span { font-size: 0.9rem; color: var(--muted); line-height: 1.6; display: block; margin-top: 2px; }
     .stats .wide { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 18px; font-size: 0.92rem; }
     .stats .wide strong { color: var(--ink); }
     @media (max-width: 900px) {
@@ -104,10 +104,10 @@
     }
 
     /* ---------- 自學路線 ---------- */
-    .route { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; position: relative; }
+    .route { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; position: relative; }
     .route::before {
-      content: ""; position: absolute; left: 8%; right: 8%; top: 26px; height: 4px;
-      background: linear-gradient(90deg, var(--acc) 0 80%, transparent 80%),
+      content: ""; position: absolute; left: 7.14%; right: 7.14%; top: 26px; height: 4px;
+      background: linear-gradient(90deg, var(--acc) 0 83.33%, transparent 83.33%),
                   repeating-linear-gradient(90deg, var(--ink) 0 8px, transparent 8px 16px);
     }
     .stop { position: relative; text-align: center; }
@@ -118,14 +118,14 @@
       font-family: var(--mono); font-weight: 700; font-size: 1.1rem;
     }
     .stop.next .num { background: var(--ink); }
-    .stop .card { background: var(--white); border-radius: var(--radius); padding: 16px 14px; height: calc(100% - 72px); }
+    .stop .card { background: var(--white); border-radius: var(--radius); padding: 16px 12px; height: calc(100% - 72px); }
     .stop h3 { font-family: var(--head); font-size: 1.05rem; color: var(--ink); margin: 0 0 6px; line-height: 1.45; }
     .stop p { font-size: 0.88rem; color: var(--muted); margin: 0; line-height: 1.7; }
     .stop.next .card { background: var(--ink); }
     .stop.next h3 { color: var(--white); }
     .stop.next p { color: #C9D2E0; }
     .next-label { display: block; font-size: 0.8rem; font-weight: 700; color: #7FD3DC; }
-    @media (max-width: 960px) {
+    @media (max-width: 1080px) {
       .route { grid-template-columns: 1fr; gap: 14px; }
       .route::before { left: 26px; right: auto; top: 20px; bottom: 20px; width: 4px; height: auto; background: var(--acc); }
       .stop { display: grid; grid-template-columns: 56px 1fr; gap: 16px; text-align: left; }
@@ -159,6 +159,7 @@
     }
     .visit:hover { background: var(--acc-d); color: var(--white); }
     .visit svg.i { width: 18px; height: 18px; }
+    .here { font-size: 0.95rem; color: var(--muted); font-style: italic; }
     .features-title { font-family: var(--head); font-size: 1.15rem; color: var(--ink); margin: 28px 0 12px; }
     .feature { display: flex; gap: 16px; align-items: flex-start; background: var(--tint); border-radius: var(--radius); padding: 18px 22px; margin-bottom: 12px; }
     .feature .icon-circle { width: 44px; height: 44px; }
@@ -209,8 +210,13 @@
        這樣作品裡的 @media 才會依照手機／平板／電腦的寬度正確反應 */
     .stage iframe { position: absolute; top: 16px; left: 16px; border: 1px solid var(--line); border-radius: 8px; background: #fff; transform-origin: top left; }
     .scale-note { position: absolute; right: 14px; bottom: 0; font-size: 0.75rem; color: var(--muted); }
-    .codeview { display: none; margin: 0; height: 560px; overflow: auto; background: var(--night); color: #E3E7EE; font-family: var(--mono); font-size: 0.8rem; line-height: 1.6; padding: 20px 22px; tab-size: 2; }
-    .lab.show-code .codeview { display: block; }
+    .codeview { display: none; height: 560px; flex-direction: column; background: var(--night); color: #E3E7EE; }
+    .lab.show-code .codeview { display: flex; }
+    .codetabs { display: flex; gap: 8px; padding: 10px 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.14); flex: none; }
+    .codetabs button { font: inherit; font-family: var(--mono); font-size: 0.82rem; cursor: pointer; border: 1px solid rgba(255, 255, 255, 0.35); background: transparent; color: #E3E7EE; border-radius: 6px; padding: 3px 16px; }
+    .codetabs button:hover { border-color: #fff; }
+    .codetabs button[aria-pressed="true"] { background: var(--acc); border-color: var(--acc); color: #fff; }
+    .codeview pre { margin: 0; flex: 1; overflow: auto; padding: 18px 22px; font-family: var(--mono); font-size: 0.8rem; line-height: 1.6; tab-size: 2; }
     .lab.show-code .stage { display: none; }
     .lab-notes { padding: 24px 26px 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .lab-notes > div { background: var(--grey); border-radius: var(--radius); padding: 18px 20px; }
@@ -245,6 +251,7 @@
     <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></symbol>
     <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></symbol>
     <symbol id="i-external" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></symbol>
+    <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></symbol>
     <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></symbol>
   </svg>
 
@@ -265,8 +272,7 @@
       <div class="wrap">
         <div>
           <p class="kicker"><b>00</b>／ 程式作品集</p>
-          <h1>鍾友銓<small>Peter｜自己安排課表的自學生</small></h1>
-          <p>我目前在新竹市以非學校型態實驗教育自學，直屬新竹市教育處，課表、進度和教材都由我自己規劃。</p>
+          <h1>鍾友銓<small>Peter｜自學生</small></h1>
           <p>為了不讓備審資料塞滿連結和 QR code，我把自學寫程式以來做過的東西整理在這個網站：先是自己規劃、實際上線的網站，再來是打基礎時做的練習。每一個都能直接打開來操作，也附上它在做什麼、我從中練到了什麼。</p>
           <div class="chips">
             <span class="chip">新竹市實驗教育自學生</span>
@@ -275,8 +281,8 @@
           </div>
         </div>
         <div class="stats" aria-label="作品概況">
-          <div class="stat"><b><small>近</small>50</b><span>累積的程式作品專案</span></div>
-          <div class="stat"><b>3</b><span>實際上線的網站</span></div>
+          <div class="stat"><b>40+</b><span>累積的程式作品專案<br>其中 39 件保存至今</span></div>
+          <div class="stat"><b>4</b><span>實際上線的網站（含本站）</span></div>
           <div class="stat"><b>20</b><span>第一個作品集收錄的專案</span></div>
           <div class="stat"><b>15</b><span>可在本站直接操作的基礎練習</span></div>
           <p class="wide">主要使用 <strong>HTML、CSS、JavaScript</strong>，後期的專案則搭配 AI 協作開發。</p>
@@ -293,22 +299,26 @@
         <ol class="route">
           <li class="stop">
             <span class="num">1</span>
-            <div class="card"><h3>取得丙級證照</h3><p>電腦軟體設計丙級，第一張和程式有關的證照。</p></div>
+            <div class="card"><h3>被傳記啟發</h3><p>讀傳記時發現不少人從寫程式起步，加上對元宇宙、區塊鏈感興趣，我開始想學程式。</p></div>
           </li>
           <li class="stop">
             <span class="num">2</span>
-            <div class="card"><h3>開始實驗教育自學</h3><p>自己安排課表和進度，把程式設計排進主要科目。</p></div>
+            <div class="card"><h3>取得丙級證照</h3><p>電腦軟體設計丙級，第一張和程式有關的證照。</p></div>
           </li>
           <li class="stop">
             <span class="num">3</span>
-            <div class="card"><h3>打好網頁基礎</h3><p>跟著 freeCodeCamp 課程完成 HTML／CSS 練習與認證專題。</p></div>
+            <div class="card"><h3>開始自學</h3><p>自己安排課表和進度，把程式設計排進主要科目。</p></div>
           </li>
           <li class="stop">
             <span class="num">4</span>
-            <div class="card"><h3>做出自己的網站</h3><p>把學到的東西用在作品集和自學歷程網站上，放上網路讓別人看得到。</p></div>
+            <div class="card"><h3>打好網頁基礎</h3><p>跟著 freeCodeCamp 課程完成 HTML、CSS、JavaScript 的練習與認證專題。</p></div>
           </li>
           <li class="stop">
             <span class="num">5</span>
+            <div class="card"><h3>做出自己的網站</h3><p>把學到的東西用在作品集和自學歷程網站上，放上網路讓別人看得到。</p></div>
+          </li>
+          <li class="stop">
+            <span class="num">6</span>
             <div class="card"><h3>NATCP 營隊</h3><p>第一次和隊友合作開發，做出全營唯一有 AI 功能的網站，獲佳作。</p></div>
           </li>
           <li class="stop next">
@@ -323,8 +333,8 @@
     <section id="works">
       <div class="wrap">
         <p class="kicker"><b>02</b>／ 上線作品</p>
-        <h2>實際上線的三個網站</h2>
-        <p class="section-lead">這三個網站是我自己（或和隊友一起）從規劃到上線完成的，點「打開網站」就能看到實際運作的版本。</p>
+        <h2>實際上線的四個網站</h2>
+        <p class="section-lead">這四個網站都是我自己（或和隊友一起）規劃並實際上線的。前三個可以點「打開網站」看實際運作的版本，第四個就是你現在看的這個網站。</p>
 
         <article class="work">
           <div class="work-head">
@@ -436,6 +446,39 @@
             <a class="visit" href="https://bosscod1.github.io/NATCP-camp-project/" target="_blank" rel="noopener noreferrer">打開網站<svg class="i"><use href="#i-external"/></svg></a>
           </div>
         </article>
+
+        <article class="work">
+          <div class="work-head">
+            <span class="icon-circle"><svg class="i"><use href="#i-monitor"/></svg></span>
+            <div>
+              <div class="top"><span class="no">作品 4</span></div>
+              <h3>程式作品集網站（本站）</h3>
+              <p class="oneline">把我自學以來的作品整理在同一個網站，讓看備審資料的人只要一個入口，就能看到全部作品。</p>
+            </div>
+          </div>
+          <div class="cols">
+            <div>
+              <p class="label">這是什麼</p>
+              <p>備審資料的篇幅有限，如果每個作品都附連結或 QR code，頁面會被塞滿，看的人也不方便一個一個掃。所以我決定把作品集中到同一個網站，備審資料只要放這一個入口。</p>
+            </div>
+            <div>
+              <p class="label">我做了什麼</p>
+              <ul>
+                <li>規劃網站的內容架構：自學路線、上線作品、基礎練習</li>
+                <li>替每一個作品寫清楚它的用途，以及我從中練到的東西</li>
+                <li>把 15 個基礎練習放進可以直接操作的預覽區，能切換手機、平板、電腦的寬度，也能分別查看 HTML 和 CSS 原始碼</li>
+              </ul>
+            </div>
+            <div class="hl">
+              <p class="label">我練到了什麼</p>
+              <p>練習把大量作品整理成有層次的內容：哪些放在前面、哪些放進練習區，並替每一個作品說明清楚。這個網站同樣搭配 AI 協作開發，我也練習把想法講清楚，讓 AI 做出符合需求的成品，再自己檢查、修改。</p>
+            </div>
+          </div>
+          <div class="work-foot">
+            <div class="chips"><span class="chip">AI 協作開發</span><span class="chip">內容規劃</span><span class="chip">資訊整理</span></div>
+            <span class="here">你現在看的就是這個網站</span>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -444,7 +487,7 @@
       <div class="wrap">
         <p class="kicker"><b>03</b>／ 網頁基礎練習</p>
         <h2>可以直接操作的 15 個練習</h2>
-        <p class="section-lead">這是我打網頁基礎時做的練習，依照學習順序排列。點選左邊的清單，右邊會直接執行那份程式碼，也可以切換手機、平板、電腦的畫面寬度，或打開原始碼來看。</p>
+        <p class="section-lead">這是我打網頁基礎時做的練習，依照學習順序排列。點選左邊的清單，右邊會直接執行那份程式碼，也可以切換手機、平板、電腦的畫面寬度，或分別查看 HTML 和 CSS 原始碼。</p>
         <div class="note-box">
           <span class="icon-circle"><svg class="i"><use href="#i-info"/></svg></span>
           <p>這些練習來自 freeCodeCamp 的「響應式網頁設計」課程，題目和版面是課程設計好的，我照著步驟一行一行把它們寫出來。我想放上來的不是「作品有多漂亮」，而是我怎麼一個觀念、一個觀念把基礎補起來。每個練習下面都寫了我在裡面練到的重點。</p>
@@ -468,7 +511,13 @@
               <iframe id="lab-frame" title="練習作品預覽" referrerpolicy="no-referrer" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
               <span class="scale-note" id="scale-note"></span>
             </div>
-            <pre class="codeview" id="lab-code"><code></code></pre>
+            <div class="codeview">
+              <div class="codetabs" role="group" aria-label="程式碼類型">
+                <button type="button" data-code="html" aria-pressed="true">HTML</button>
+                <button type="button" data-code="css" aria-pressed="false">CSS</button>
+              </div>
+              <pre id="lab-code"><code></code></pre>
+            </div>
             <div class="lab-notes">
               <div>
                 <p class="label">這個練習在做什麼</p>
@@ -1418,6 +1467,58 @@
     const codeToggle = document.getElementById('code-toggle');
     let currentId = null;
 
+    // ---- 程式碼檢視：把每個練習拆成 HTML 與 CSS 兩個分頁 ----
+    let codeTab = 'html';
+    let codeParts = { html: '', css: '' };
+
+    // 把原本擠在同一行的 CSS 規則整理成一條一行，並依層級縮排
+    function formatCss(src) {
+      const text = src.replace(/\s+/g, ' ').trim();
+      let out = '', depth = 0, paren = 0;
+      const pad = () => '  '.repeat(depth);
+      for (const ch of text) {
+        if (ch === '(') paren++;
+        if (ch === ')') paren--;
+        if (paren > 0 || (ch !== '{' && ch !== '}' && ch !== ';')) {
+          if (paren === 0 && ch === ' ' && /[ \n]$/.test(out)) continue; // 換行或縮排後不再多一個空格
+          out += ch; continue;
+        }
+        if (ch === '{') { out = out.trimEnd() + ' {\n'; depth++; out += pad(); }
+        else if (ch === ';') { out = out.trimEnd() + ';\n' + pad(); }
+        else {
+          out = out.trimEnd();
+          depth = Math.max(0, depth - 1);
+          out += '\n' + pad() + '}\n' + pad();
+          if (depth === 0) out += '\n';
+        }
+      }
+      return out.replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+    }
+
+    function splitCode(src) {
+      const sheets = [];
+      const html = src.replace(/<style[^>]*>([\s\S]*?)<\/style>/gi, (m, css) => {
+        sheets.push(css);
+        return '<style>/* CSS 請看「CSS」分頁 */</style>';
+      });
+      const css = sheets.length
+        ? sheets.map(formatCss).join('\n\n')
+        : '/* 這個練習只有 HTML，沒有寫 CSS。 */';
+      return { html, css };
+    }
+
+    function renderCode() {
+      codeEl.textContent = codeParts[codeTab];
+      document.querySelectorAll('[data-code]').forEach(b => {
+        b.setAttribute('aria-pressed', String(b.dataset.code === codeTab));
+      });
+      document.getElementById('lab-code').scrollTop = 0;
+    }
+
+    document.querySelectorAll('[data-code]').forEach(btn => {
+      btn.addEventListener('click', () => { codeTab = btn.dataset.code; renderCode(); });
+    });
+
     // 依群組產生左側清單
     function buildList() {
       let lastGroup = '';
@@ -1467,7 +1568,8 @@
       });
 
       frame.srcdoc = p.code;
-      codeEl.textContent = p.code;
+      codeParts = splitCode(p.code);
+      renderCode();
     }
 
     // 預覽寬度切換：手機 375px／平板 768px／電腦 1280px
