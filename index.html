@@ -240,7 +240,91 @@
     .site-foot .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
     .site-foot strong { color: var(--white); font-family: var(--head); font-size: 1.05rem; }
     .site-foot p { margin: 0; }
-  </style>
+  
+    /* ---------- JavaScript：練習／實作 切換方框 ---------- */
+    .kind-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0 0 20px; }
+    .kind-tab {
+      display: flex; flex-direction: column; gap: 6px; text-align: left; cursor: pointer;
+      font: inherit; color: var(--text); background: var(--white);
+      border: 2px solid var(--line); border-radius: var(--radius); padding: 18px 22px;
+      transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+    }
+    .kind-tab:hover { border-color: var(--acc); }
+    .kind-tab[aria-selected="true"] { border-color: var(--acc); background: var(--tint); box-shadow: 0 6px 20px rgba(14, 140, 154, 0.15); }
+    .kind-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .kind-top b { font-family: var(--head); font-size: 1.25rem; color: var(--ink); }
+    .kind-count { font-family: var(--mono); font-size: 0.85rem; font-weight: 700; color: var(--acc-d); background: var(--white); border: 1px solid var(--line); border-radius: 999px; padding: 1px 12px; }
+    .kind-tab[aria-selected="true"] .kind-count { background: var(--acc); border-color: var(--acc); color: var(--white); }
+    .kind-desc { font-size: 0.92rem; color: var(--muted); line-height: 1.7; }
+    @media (max-width: 640px) { .kind-tabs { grid-template-columns: 1fr; gap: 10px; } .kind-tab { padding: 14px 18px; } }
+
+    /* ---------- 練習作品：HTML／CSS 與 JavaScript 切換 ---------- */
+    .lang-tabs { display: inline-grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 6px; background: var(--grey); border-radius: 18px; margin: 0 0 28px; min-width: min(560px, 100%); }
+    .lang-tab { font: inherit; cursor: pointer; border: 0; background: transparent; border-radius: 13px; padding: 14px 22px; text-align: left; display: flex; flex-direction: column; gap: 2px; color: var(--text); }
+    .lang-tab:hover { background: var(--white); }
+    .lang-tab .lt-name { font-family: var(--mono); font-weight: 700; font-size: 1.15rem; color: var(--ink); }
+    .lang-tab .lt-sub { font-size: 0.88rem; color: var(--muted); }
+    .lang-tab .lt-sub b { font-family: var(--mono); }
+    .lang-tab[aria-selected="true"] { background: var(--ink); box-shadow: 0 6px 18px rgba(20, 33, 61, 0.2); }
+    .lang-tab[aria-selected="true"] .lt-name { color: var(--white); }
+    .lang-tab[aria-selected="true"] .lt-sub { color: #C9D2E0; }
+    .panel-lead { color: var(--muted); max-width: 46em; margin: 0 0 20px; }
+    .lang-panel[hidden] { display: none; }
+    @media (max-width: 560px) { .lang-tabs { display: grid; width: 100%; } .lang-tab { padding: 12px 14px; } }
+
+    /* ---------- 網站導覽 ---------- */
+    .tour-launch {
+      position: fixed; right: 20px; bottom: 20px; z-index: 40;
+      display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; border-radius: 999px; border: 0;
+      background: var(--ink); color: var(--white); font: inherit; font-weight: 700; font-size: 0.92rem; cursor: pointer;
+      box-shadow: 0 8px 24px rgba(20, 33, 61, 0.28);
+    }
+    .tour-launch:hover { background: var(--acc-d); }
+    .tour-launch svg.i { width: 18px; height: 18px; }
+    body.touring .tour-launch { visibility: hidden; }
+    body.touring.tour-last .tour-launch { visibility: visible; }
+    #tour-spot {
+      position: fixed; z-index: 60; display: none; pointer-events: none; border-radius: 14px;
+      outline: 3px solid var(--acc); outline-offset: 2px;
+    }
+    #tour-mask { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 59; pointer-events: none; display: none; }
+    #tour-card {
+      position: fixed; z-index: 61; display: none; width: 350px; max-width: calc(100vw - 24px);
+      background: var(--white); border-radius: 16px; padding: 18px 20px 16px;
+      box-shadow: 0 16px 48px rgba(15, 26, 46, 0.35);
+    }
+    .tour-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+    .tour-step { font-family: var(--mono); font-size: 0.8rem; font-weight: 700; color: var(--acc); }
+    .tour-close { border: 0; background: none; font: inherit; font-size: 0.85rem; color: var(--muted); cursor: pointer; padding: 2px 4px; }
+    .tour-close:hover { color: var(--ink); }
+    #tour-card h4 { font-family: var(--head); font-size: 1.15rem; color: var(--ink); margin: 0 0 6px; line-height: 1.4; }
+    #tour-card .tour-text { margin: 0; font-size: 0.95rem; line-height: 1.75; }
+    #tour-card .tour-do { margin: 10px 0 0; padding: 8px 12px; background: var(--tint); border-radius: 10px; color: var(--acc-d); font-weight: 700; font-size: 0.9rem; }
+    .tour-btns { display: flex; justify-content: space-between; gap: 10px; margin-top: 14px; }
+    .tour-btns button { font: inherit; font-size: 0.9rem; font-weight: 700; cursor: pointer; border-radius: 999px; padding: 8px 18px; }
+    .tour-prev { background: var(--white); border: 1px solid var(--line); color: var(--text); }
+    .tour-prev[disabled] { opacity: 0.4; cursor: default; }
+    .tour-next { background: var(--acc); border: 1px solid var(--acc); color: var(--white); }
+    .tour-next:hover { background: var(--acc-d); border-color: var(--acc-d); }
+    .tour-bar { height: 4px; background: var(--grey); border-radius: 2px; margin-top: 14px; overflow: hidden; }
+    .tour-bar i { display: block; height: 100%; width: 0; background: var(--acc); transition: width 0.25s; }
+    #tour-welcome { position: fixed; inset: 0; z-index: 70; background: rgba(15, 26, 46, 0.6); display: grid; place-items: center; padding: 20px; }
+    #tour-welcome[hidden] { display: none; }
+    .tw-card { background: var(--white); border-radius: 20px; max-width: 440px; width: 100%; padding: 30px 30px 26px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); }
+    .tw-card .icon-circle { margin-bottom: 14px; }
+    .tw-card h3 { font-family: var(--head); font-size: 1.45rem; color: var(--ink); margin: 0 0 8px; }
+    .tw-card p { margin: 0 0 8px; font-size: 0.98rem; }
+    .tw-card .tw-note { font-size: 0.85rem; color: var(--muted); margin: 0; }
+    .tw-btns { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+    .tw-btns button { font: inherit; font-weight: 700; font-size: 0.95rem; cursor: pointer; border-radius: 999px; padding: 10px 24px; }
+    #tw-start { background: var(--acc); border: 1px solid var(--acc); color: var(--white); }
+    #tw-start:hover { background: var(--acc-d); }
+    #tw-skip { background: var(--white); border: 1px solid var(--line); color: var(--text); }
+    @media (max-width: 640px) {
+      .tour-launch { right: 14px; bottom: 14px; padding: 10px 16px; }
+      #tour-card { width: calc(100vw - 24px); }
+    }
+</style>
 </head>
 <body>
   <!-- 圖示（Feather Icons 線條風格，與備審資料一致） -->
@@ -254,6 +338,7 @@
     <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></symbol>
     <symbol id="i-external" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></symbol>
     <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></symbol>
+    <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></symbol>
     <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></symbol>
   </svg>
 
@@ -262,9 +347,8 @@
       <a class="brand" href="#top"><span class="mark">P</span><strong>鍾友銓</strong><span>程式作品集</span></a>
       <nav aria-label="頁面導覽">
         <a href="#route">自學路線</a>
+        <a href="#practice">練習作品</a>
         <a href="#works">上線作品</a>
-        <a href="#lab">基礎練習</a>
-        <a href="#js-lab">JavaScript 專案</a>
       </nav>
     </div>
   </header>
@@ -276,7 +360,7 @@
         <div>
           <p class="kicker"><b>00</b>／ 程式作品集</p>
           <h1>鍾友銓<small>Peter｜自學生</small></h1>
-          <p>為了不讓備審資料塞滿連結和 QR code，我把自學寫程式以來做過的東西整理在這個網站：先是自己規劃、實際上線的網站，再來是打基礎時做的練習與 JavaScript 專案。每一個都能直接打開來操作，也附上它在做什麼、我從中練到了什麼。</p>
+          <p>為了不讓備審資料塞滿連結和 QR code，我把自學寫程式以來做過的東西整理在這個網站：先是打基礎時做的 HTML／CSS 練習與 JavaScript 專案，再來是自己規劃、實際上線的網站。每一個都能直接打開來操作，也附上它在做什麼、我從中練到了什麼。</p>
           <div class="chips">
             <span class="chip">新竹市實驗教育自學生</span>
             <span class="chip">電腦軟體設計丙級技術士</span>
@@ -332,10 +416,133 @@
       </div>
     </section>
 
-    <!-- 上線作品 -->
-    <section id="works">
+    <!-- 可以直接操作的練習作品（HTML／CSS 與 JavaScript 合併，用按鈕切換） -->
+    <section id="practice">
       <div class="wrap">
-        <p class="kicker"><b>02</b>／ 上線作品</p>
+        <p class="kicker"><b>02</b>／ 練習作品</p>
+        <h2>可以直接操作的練習作品</h2>
+        <p class="section-lead">先選擇要看的類別。每個作品都能直接在頁面上執行，也能查看原始碼和我從中練到的觀念。</p>
+        <div class="lang-tabs" role="tablist" aria-label="選擇練習類別">
+          <button type="button" class="lang-tab" role="tab" data-lang="html" aria-selected="true" aria-controls="lab">
+            <span class="lt-name">HTML／CSS</span><span class="lt-sub">網頁基礎練習 <b data-lang-count="html"></b> 個</span>
+          </button>
+          <button type="button" class="lang-tab" role="tab" data-lang="js" aria-selected="false" aria-controls="js-lab">
+            <span class="lt-name">JavaScript</span><span class="lt-sub">練習與實作專案 <b data-lang-count="js"></b> 個</span>
+          </button>
+        </div>
+
+        <div class="lang-panel" id="lab" role="tabpanel" aria-label="HTML／CSS 網頁基礎練習">
+        <p class="panel-lead">這是我打網頁基礎時做的練習，依照學習順序排列。點選左邊的清單，右邊會直接執行那份程式碼，也可以切換手機、平板、電腦的畫面寬度，或分別查看 HTML 和 CSS 原始碼。</p>
+        <div class="note-box">
+          <span class="icon-circle"><svg class="i"><use href="#i-info"/></svg></span>
+          <p>這些練習來自 freeCodeCamp 的「響應式網頁設計」課程，題目和版面是課程設計好的，我照著步驟一行一行把它們寫出來。我想放上來的不是「作品有多漂亮」，而是我怎麼一個觀念、一個觀念把基礎補起來。每個練習下面都寫了我在裡面練到的重點。</p>
+        </div>
+
+        <div class="lab" id="lab-box">
+          <nav class="lab-list" id="lab-list" aria-label="練習清單"></nav>
+          <div class="lab-main">
+            <div class="lab-bar">
+              <h3 id="lab-title">載入中</h3>
+              <div class="controls" role="group" aria-label="預覽設定">
+                <span class="seg">
+                  <button type="button" data-width="375">手機</button>
+                  <button type="button" data-width="768">平板</button>
+                  <button type="button" data-width="1280">電腦</button>
+                </span>
+                <button type="button" id="code-toggle" class="code-toggle-btn" aria-pressed="false">看程式碼</button>
+              </div>
+            </div>
+            <div class="stage" id="lab-stage">
+              <iframe id="lab-frame" title="練習作品預覽" referrerpolicy="no-referrer" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+              <span class="scale-note" id="scale-note"></span>
+            </div>
+            <div class="codeview">
+              <div class="codetabs" role="group" aria-label="程式碼類型">
+                <button type="button" data-code="html" aria-pressed="true">HTML</button>
+                <button type="button" data-code="css" aria-pressed="false">CSS</button>
+              </div>
+              <pre id="lab-code"><code></code></pre>
+            </div>
+            <div class="lab-notes">
+              <div>
+                <p class="label">這個練習在做什麼</p>
+                <p id="lab-what"></p>
+                <p class="hint" id="lab-hint" hidden></p>
+              </div>
+              <div>
+                <p class="label">我練到的觀念</p>
+                <ul id="lab-points"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <div class="lang-panel" id="js-lab" role="tabpanel" aria-label="JavaScript 專案" hidden>
+        <p class="panel-lead">學完 HTML 和 CSS 之後，我進入 JavaScript 的學習，讓網頁開始有邏輯、能和使用者互動。這裡不用跳回舊的作品集網站，就能直接在頁面上操作，並分別查看 JavaScript、HTML 與 CSS 原始碼。</p>
+        <div class="note-box">
+          <span class="icon-circle"><svg class="i"><use href="#i-terminal"/></svg></span>
+          <p>我把這裡的作品分成兩類：<strong>「練習專案」</strong>是跟著課程步驟，把迴圈、陣列、函式與 DOM 操作一個一個練熟（原本只在終端機輸出的練習，我也加上了網頁介面方便直接操作）；<strong>「實作專案」</strong>則是課程只給功能需求與測試條件，從畫面排版到程式邏輯都由我自己獨立完成。</p>
+        </div>
+
+        <div class="kind-tabs" role="tablist" aria-label="選擇要瀏覽的專案類型">
+          <button type="button" class="kind-tab" role="tab" data-kind="practice" aria-selected="true" aria-controls="js-lab-box">
+            <span class="kind-top"><b>練習專案</b><span class="kind-count" data-count="practice"></span></span>
+            <span class="kind-desc">跟著課程步驟，把迴圈、陣列、函式與 DOM 操作一個一個練熟。</span>
+          </button>
+          <button type="button" class="kind-tab" role="tab" data-kind="project" aria-selected="false" aria-controls="js-lab-box">
+            <span class="kind-top"><b>實作專案</b><span class="kind-count" data-count="project"></span></span>
+            <span class="kind-desc">課程只給功能需求與測試條件，從畫面到程式邏輯都由我獨立完成。</span>
+          </button>
+        </div>
+
+        <div class="lab" id="js-lab-box">
+          <nav class="lab-list" id="js-lab-list" aria-label="JavaScript 專案清單"></nav>
+          <div class="lab-main">
+            <div class="lab-bar">
+              <h3 id="js-lab-title">載入中</h3>
+              <div class="controls" role="group" aria-label="JavaScript 預覽設定">
+                <span class="seg">
+                  <button type="button" data-js-width="375">手機</button>
+                  <button type="button" data-js-width="768">平板</button>
+                  <button type="button" data-js-width="1280">電腦</button>
+                </span>
+                <button type="button" id="js-code-toggle" class="code-toggle-btn" aria-pressed="false">看程式碼</button>
+              </div>
+            </div>
+            <div class="stage" id="js-lab-stage">
+              <iframe id="js-lab-frame" title="JavaScript 專案預覽" referrerpolicy="no-referrer" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"></iframe>
+              <span class="scale-note" id="js-scale-note"></span>
+            </div>
+            <div class="codeview">
+              <div class="codetabs" role="group" aria-label="JavaScript 程式碼類型">
+                <button type="button" data-js-code="js" aria-pressed="true">JavaScript</button>
+                <button type="button" data-js-code="html" aria-pressed="false">HTML</button>
+                <button type="button" data-js-code="css" aria-pressed="false">CSS</button>
+              </div>
+              <pre id="js-lab-code"><code></code></pre>
+            </div>
+            <div class="lab-notes">
+              <div>
+                <p class="label" id="js-lab-what-label">這個練習在做什麼</p>
+                <p id="js-lab-what"></p>
+                <p class="hint" id="js-lab-hint" hidden></p>
+              </div>
+              <div>
+                <p class="label">我練到的觀念</p>
+                <ul id="js-lab-points"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 上線作品 -->
+    <section id="works" class="alt">
+      <div class="wrap">
+        <p class="kicker"><b>03</b>／ 上線作品</p>
         <h2>實際上線的四個網站</h2>
         <p class="section-lead">這四個網站都是我自己（或和隊友一起）規劃並實際上線的。前三個可以點「打開網站」看實際運作的版本，第四個就是你現在看的這個網站。</p>
 
@@ -484,111 +691,6 @@
         </article>
       </div>
     </section>
-
-    <!-- 網頁基礎練習 -->
-    <section id="lab" class="alt">
-      <div class="wrap">
-        <p class="kicker"><b>03</b>／ 網頁基礎練習</p>
-        <h2>可以直接操作的 15 個練習</h2>
-        <p class="section-lead">這是我打網頁基礎時做的練習，依照學習順序排列。點選左邊的清單，右邊會直接執行那份程式碼，也可以切換手機、平板、電腦的畫面寬度，或分別查看 HTML 和 CSS 原始碼。</p>
-        <div class="note-box">
-          <span class="icon-circle"><svg class="i"><use href="#i-info"/></svg></span>
-          <p>這些練習來自 freeCodeCamp 的「響應式網頁設計」課程，題目和版面是課程設計好的，我照著步驟一行一行把它們寫出來。我想放上來的不是「作品有多漂亮」，而是我怎麼一個觀念、一個觀念把基礎補起來。每個練習下面都寫了我在裡面練到的重點。</p>
-        </div>
-
-        <div class="lab" id="lab-box">
-          <nav class="lab-list" id="lab-list" aria-label="練習清單"></nav>
-          <div class="lab-main">
-            <div class="lab-bar">
-              <h3 id="lab-title">載入中</h3>
-              <div class="controls" role="group" aria-label="預覽設定">
-                <span class="seg">
-                  <button type="button" data-width="375">手機</button>
-                  <button type="button" data-width="768">平板</button>
-                  <button type="button" data-width="1280">電腦</button>
-                </span>
-                <button type="button" id="code-toggle" class="code-toggle-btn" aria-pressed="false">看程式碼</button>
-              </div>
-            </div>
-            <div class="stage" id="lab-stage">
-              <iframe id="lab-frame" title="練習作品預覽" referrerpolicy="no-referrer" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
-              <span class="scale-note" id="scale-note"></span>
-            </div>
-            <div class="codeview">
-              <div class="codetabs" role="group" aria-label="程式碼類型">
-                <button type="button" data-code="html" aria-pressed="true">HTML</button>
-                <button type="button" data-code="css" aria-pressed="false">CSS</button>
-              </div>
-              <pre id="lab-code"><code></code></pre>
-            </div>
-            <div class="lab-notes">
-              <div>
-                <p class="label">這個練習在做什麼</p>
-                <p id="lab-what"></p>
-                <p class="hint" id="lab-hint" hidden></p>
-              </div>
-              <div>
-                <p class="label">我練到的觀念</p>
-                <ul id="lab-points"></ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- JavaScript 練習與實作專案 -->
-    <section id="js-lab">
-      <div class="wrap">
-        <p class="kicker"><b>04</b>／ JavaScript 練習與實作</p>
-        <h2>可以直接操作的 JavaScript 專案</h2>
-        <p class="section-lead">學完 HTML 和 CSS 之後，我進入 JavaScript 的學習，讓網頁開始有邏輯、能和使用者互動。這裡不用跳回舊的作品集網站，就能直接在頁面上操作，並分別查看 JavaScript、HTML 與 CSS 原始碼。</p>
-        <div class="note-box">
-          <span class="icon-circle"><svg class="i"><use href="#i-terminal"/></svg></span>
-          <p>我把這裡的作品分成兩類：<strong>「練習專案」</strong>是跟著課程步驟，把迴圈、陣列、函式與 DOM 操作一個一個練熟（原本只在終端機輸出的練習，我也加上了網頁介面方便直接操作）；<strong>「實作專案」</strong>則是課程只給功能需求與測試條件，從畫面排版到程式邏輯都由我自己獨立完成。</p>
-        </div>
-
-        <div class="lab" id="js-lab-box">
-          <nav class="lab-list" id="js-lab-list" aria-label="JavaScript 專案清單"></nav>
-          <div class="lab-main">
-            <div class="lab-bar">
-              <h3 id="js-lab-title">載入中</h3>
-              <div class="controls" role="group" aria-label="JavaScript 預覽設定">
-                <span class="seg">
-                  <button type="button" data-js-width="375">手機</button>
-                  <button type="button" data-js-width="768">平板</button>
-                  <button type="button" data-js-width="1280">電腦</button>
-                </span>
-                <button type="button" id="js-code-toggle" class="code-toggle-btn" aria-pressed="false">看程式碼</button>
-              </div>
-            </div>
-            <div class="stage" id="js-lab-stage">
-              <iframe id="js-lab-frame" title="JavaScript 專案預覽" referrerpolicy="no-referrer" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"></iframe>
-              <span class="scale-note" id="js-scale-note"></span>
-            </div>
-            <div class="codeview">
-              <div class="codetabs" role="group" aria-label="JavaScript 程式碼類型">
-                <button type="button" data-js-code="js" aria-pressed="true">JavaScript</button>
-                <button type="button" data-js-code="html" aria-pressed="false">HTML</button>
-                <button type="button" data-js-code="css" aria-pressed="false">CSS</button>
-              </div>
-              <pre id="js-lab-code"><code></code></pre>
-            </div>
-            <div class="lab-notes">
-              <div>
-                <p class="label" id="js-lab-what-label">這個練習在做什麼</p>
-                <p id="js-lab-what"></p>
-                <p class="hint" id="js-lab-hint" hidden></p>
-              </div>
-              <div>
-                <p class="label">我練到的觀念</p>
-                <ul id="js-lab-points"></ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="site-foot">
@@ -597,6 +699,29 @@
       <p>© 2026 鍾友銓｜程式作品集</p>
     </div>
   </footer>
+
+  <!-- 網站導覽 -->
+  <button type="button" class="tour-launch" id="tour-launch"><svg class="i"><use href="#i-compass"/></svg>網站導覽</button>
+  <svg id="tour-mask" aria-hidden="true"><path fill="rgba(15, 26, 46, 0.55)" fill-rule="evenodd" d=""/></svg>
+  <div id="tour-spot" aria-hidden="true"></div>
+  <div id="tour-card" role="dialog" aria-live="polite" aria-label="網站導覽">
+    <div class="tour-head"><span class="tour-step"></span><button type="button" class="tour-close">結束導覽 ✕</button></div>
+    <h4></h4>
+    <p class="tour-text"></p>
+    <p class="tour-do" hidden></p>
+    <div class="tour-btns"><button type="button" class="tour-prev">上一步</button><button type="button" class="tour-next">下一步</button></div>
+    <div class="tour-bar"><i></i></div>
+  </div>
+  <div id="tour-welcome" hidden>
+    <div class="tw-card" role="dialog" aria-modal="true" aria-labelledby="tw-title">
+      <span class="icon-circle"><svg class="i"><use href="#i-compass"/></svg></span>
+      <h3 id="tw-title">需要網站導覽嗎？</h3>
+      <p>這個網站有不少可以動手操作的地方。導覽會依序介紹每個區塊，並帶你實際操作一個 JavaScript 專案，大約 2 分鐘。</p>
+      <p class="tw-note">選擇「自己逛逛」也沒關係，之後隨時可以點右下角的「網站導覽」開始。</p>
+      <div class="tw-btns"><button type="button" id="tw-start">開始導覽</button><button type="button" id="tw-skip">自己逛逛</button></div>
+    </div>
+  </div>
+
 
   <script>
     // 練習資料：依學習順序排列。what = 這個練習在做什麼，points = 我練到的觀念
@@ -1521,7 +1646,7 @@
     const jsProjectData = [
       {
         id: 'pyramid-generator',
-        group: '練習專案',
+        kind: 'practice', group: '基礎語法',
         title: '金字塔產生器',
         en: 'Pyramid Generator',
         what: '這是我接觸 JavaScript 的第一個練習：用迴圈和陣列排出一個由符號組成的對稱金字塔。原本這段程式只會用 `console.log(result)` 印在終端機裡，為了能在網頁上直接看到結果，這裡加上了簡單的互動模擬介面，可以直接調整字元、層數與正反方向。',
@@ -1761,7 +1886,7 @@ pre {
       },
       {
         id: 'gradebook-app',
-        group: '練習專案',
+        kind: 'practice', group: '基礎語法',
         title: '成績計算與評等',
         en: 'Gradebook App',
         what: '把幾個小函式組合起來，算出全班平均、換算出等第（A++ 到 F），最後產生一段給學生的成績通知。原本也是只會在終端機印出字串的練習，這裡我加上了互動介面，可以直接修改全班成績清單或輸入不同分數，測試四個函式串起來的結果。',
@@ -2087,7 +2212,7 @@ body {
       },
       {
         id: 'rpg-dragon-repeller',
-        group: '練習專案',
+        kind: 'practice', group: '基礎語法',
         title: '勇者鬥惡龍文字遊戲',
         en: 'Role Playing Game',
         what: '一個文字冒險 RPG 遊戲：玩家在城鎮廣場、商店、洞穴之間移動，買血量與武器、打史萊姆存經驗值和金幣，最後挑戰惡龍。這是我第一次把 HTML、CSS 和比較長的 JavaScript 串在一起，也是第一次體會到怎麼用「資料結構」管理遊戲狀態。',
@@ -2829,7 +2954,7 @@ function pick(guess) {
       },
       {
         id: 'random-bg-changer',
-        group: '練習專案',
+        kind: 'practice', group: 'DOM 操作、事件與表單',
         title: '隨機背景色切換器',
         en: 'Random Background Color Changer',
         what: '按下按鈕後，從預設的深色色碼陣列裡隨機挑一個顏色，同時改變整個頁面的背景色，並把對應的 Hex 色碼顯示在畫面上。這個練習主要是為了抓出並修正 DOM 操作與事件綁定常見的語法錯誤（Debugging）。',
@@ -3028,7 +3153,7 @@ btn.onclick = changeBackgroundColor;`,
       },
       {
         id: 'calorie-counter',
-        group: '練習專案',
+        kind: 'practice', group: 'DOM 操作、事件與表單',
         title: '熱量計算器',
         en: 'Calorie Counter',
         what: '一個計算每日熱量攝取與消耗的表單工具。使用者可以先設定每日熱量預算，接著自由新增早餐、午餐、晚餐、點心和運動的項目與卡路里，送出後會自動算出今天還剩下多少熱量（Deficit）或超標多少（Surplus）。',
@@ -3556,7 +3681,7 @@ clearButton.addEventListener("click", clearForm);`,
       },
       {
         id: 'rock-paper-scissors',
-        group: '練習專案',
+        kind: 'practice', group: 'DOM 操作、事件與表單',
         title: '猜拳遊戲',
         en: 'Rock, Paper, Scissors Game',
         what: '一個和電腦對戰的剪刀石頭布小遊戲，採三戰兩勝（先拿到 3 分的人獲勝）。這個練習重點在於把遊戲規則拆成職責清楚的小函式，並在比賽結束時切換畫面上的按鈕與重新開始狀態。',
@@ -4025,7 +4150,7 @@ scissorsBtn.addEventListener("click", function () {
       },
       {
         id: 'music-player',
-        group: '練習專案',
+        kind: 'practice', group: '陣列、物件與資料儲存',
         title: '音樂播放器',
         en: 'Music Player App',
         what: '一個功能完整的網頁音樂播放器，支援播放、暫停、上一首、下一首、隨機排序（Shuffle）以及從播放清單刪除歌曲；當清單被刪光時還會出現「Reset Playlist」按鈕。這個練習讓我大量使用陣列的高階方法（`map`、`filter`、`find`、`sort`）與瀏覽器的 Web Audio API。',
@@ -5593,7 +5718,7 @@ setPlayButtonAccessibleText();`,
       },
       {
         id: 'date-formatter',
-        group: '練習專案',
+        kind: 'practice', group: '陣列、物件與資料儲存',
         title: '日期格式化工具',
         en: 'Date Formatter',
         what: '用 JavaScript 內建的 `Date` 物件取得當下的年、月、日、時、分，並讓使用者透過下拉選單切換不同的日期排列格式（日-月-年、年-月-日、或是包含時與分的完整格式）。',
@@ -6059,7 +6184,7 @@ dateOptionsSelectElement.addEventListener("change", () => {
       },
       {
         id: 'football-team-cards',
-        group: '練習專案',
+        kind: 'practice', group: '陣列、物件與資料儲存',
         title: '足球隊球員圖鑑',
         en: 'Football Team Cards',
         what: '展示 1986 年世界盃冠軍阿根廷隊的球員名單卡片，並提供下拉選單依「有無綽號」或「場上位置（前鋒、中場、後衛、守門員）」即時篩選球員。這個練習讓我學會 ES6 的物件解構賦值與預設參數。',
@@ -6997,7 +7122,7 @@ playersDropdownList.addEventListener("change", (e) => {
       },
       {
         id: 'todo-app',
-        group: '練習專案',
+        kind: 'practice', group: '陣列、物件與資料儲存',
         title: '待辦事項清單',
         en: 'Todo App',
         what: '一個具備新增、編輯、刪除（CRUD）功能的待辦事項管理工具，並將資料儲存在瀏覽器的 `localStorage` 中，重新整理頁面後任務也不會消失；若編輯到一半按叉叉關閉，還會跳出原生 `<dialog>` 視窗詢問是否捨棄未儲存的變更。',
@@ -7759,7 +7884,7 @@ taskForm.addEventListener("submit", (e) => {
       },
       {
         id: 'decimal-to-binary',
-        group: '練習專案',
+        kind: 'practice', group: '遞迴、正規表達式與演算法',
         title: '十進位轉二進位轉換器',
         en: 'Decimal to Binary Converter',
         what: '把使用者輸入的十進位正整數轉換成二進位字串。為了幫助理解「遞迴（Recursion）」在電腦記憶體裡是怎麼運作的，當輸入數字 `5` 時，下方會一步一步播放呼叫堆疊（Call Stack）把函式推入（push）再逐層回傳彈出（pop）的視覺化動畫。',
@@ -8261,7 +8386,7 @@ numberInput.addEventListener("keydown", (e) => {
       },
       {
         id: 'spam-filter',
-        group: '練習專案',
+        kind: 'practice', group: '遞迴、正規表達式與演算法',
         title: '垃圾訊息過濾器',
         en: 'Spam Filter',
         what: '用正規表達式（Regular Expressions）檢查輸入的訊息是否包含常見的詐騙或垃圾郵件字眼（例如要求幫忙、提到大筆金額、Free Money、Stock Alert、Dear Friend 等），並能識破把字母換成數字或符號的變形寫法（如把 e 換成 3、a 換成 @ 或 4）。',
@@ -8563,7 +8688,7 @@ checkMessageButton.addEventListener("click", () => {
       },
       {
         id: 'number-sorter',
-        group: '練習專案',
+        kind: 'practice', group: '遞迴、正規表達式與演算法',
         title: '數字排序器',
         en: 'Number Sorter',
         what: '從五個下拉選單讀取出數字陣列，按下 Sort 後由小到大排列並顯示在下方。為了徹底搞懂排序是怎麼運作的，這個練習不只有用內建的 `.sort()`，還從頭手寫了氣泡排序（Bubble Sort）、選擇排序（Selection Sort）與插入排序（Insertion Sort）三種經典演算法。',
@@ -9283,7 +9408,7 @@ sortButton.addEventListener("click", sortInputArray);`,
       },
       {
         id: 'statistics-calculator',
-        group: '練習專案',
+        kind: 'practice', group: '遞迴、正規表達式與演算法',
         title: '統計計算機',
         en: 'Statistics Calculator',
         what: '輸入一串以逗號分隔的數字，一次計算出六種常用的統計量：平均數（Mean）、中位數（Median）、眾數（Mode）、全距（Range）、變異數（Variance）與標準差（Standard Deviation）。這個練習讓我大量運用陣列方法來處理數學與資料分析問題。',
@@ -9587,7 +9712,7 @@ const calculate = () => {
       },
       {
         id: 'spreadsheet',
-        group: '練習專案',
+        kind: 'practice', group: '函數式程式設計與物件導向',
         title: '函數式編程試算表',
         en: 'Functional Programming Spreadsheet',
         what: '用純 JavaScript 做出一個有 A～J 欄、1～99 列的線上電子試算表（類似簡化版的 Excel）。在儲存格裡輸入 `=` 開頭的公式（例如 `=sum(A1:A5)` 或 `=A1+B1*2`），按下 Enter 或離開輸入框後，就會自動展開儲存格範圍、照先乘除後加減算出結果。',
@@ -9859,7 +9984,7 @@ const update = event => {
       },
       {
         id: 'shopping-cart',
-        group: '練習專案',
+        kind: 'practice', group: '函數式程式設計與物件導向',
         title: '甜點購物車',
         en: 'Shopping Cart',
         what: '用物件導向程式設計（OOP）實作一個線上甜點商店的購物車系統。頁面上會列出 12 種甜點卡片，點選「Add to cart」後可以打開右上角的購物車清單，系統會自動合併相同商品的數量（例如顯示 `2x`）、計算小計（Subtotal）、8.25% 稅金（Taxes）與最終總金額（Total），也能一鍵清空購物車。',
@@ -10544,7 +10669,7 @@ clearCartBtn.addEventListener("click", cart.clearCart.bind(cart));`,
       },
       {
         id: 'platformer-game',
-        group: '練習專案',
+        kind: 'practice', group: '函數式程式設計與物件導向',
         title: '橫向捲軸平台跳躍遊戲',
         en: 'Platformer Game',
         what: '用 HTML5 `<canvas>` 與物件導向（OOP）做出的橫向捲軸跳躍過關遊戲。玩家可以用鍵盤左右方向鍵移動、按上方向鍵或空白鍵跳躍，踩上綠色平台並依序抵達三個黃色檢查點（Checkpoints）即可過關。',
@@ -11382,7 +11507,7 @@ window.addEventListener("keyup", ({ key }) => {
       },
       {
         id: 'palindrome-checker',
-        group: '實作專案',
+        kind: 'project', group: '認證實作專案',
         title: '迴文檢查器',
         en: 'Palindrome Checker',
         what: '我的第一個 JavaScript 認證實作專案。迴文（Palindrome）是指正著讀和反著讀都一樣的字句（忽略標點符號、大小寫和空白）。為了讓看的人不用自己想測試句子，我在頁面下方加了一排測試範例，直接點擊任一行就會自動帶入輸入框。',
@@ -11697,7 +11822,7 @@ function showResult(input) {
       },
       {
         id: 'roman-numeral-converter',
-        group: '實作專案',
+        kind: 'project', group: '認證實作專案',
         title: '羅馬數字轉換器',
         en: 'Roman Numeral Converter',
         what: '我的第二個 JavaScript 認證實作專案：把 1 到 3999 之間的阿拉伯數字轉換成標準的羅馬數字（例如把 2026 轉成 MMXXVI）。背景加上了半透明的羅馬雕像圖案與襯線字體，讓視覺風格貼合主題。',
@@ -11968,7 +12093,7 @@ function arabicToRoman(number) {
       },
       {
         id: 'telephone-validator',
-        group: '實作專案',
+        kind: 'project', group: '認證實作專案',
         title: '美國電話號碼驗證器',
         en: 'Telephone Number Validator',
         what: '我的第三個 JavaScript 認證實作專案：檢查輸入的字串是否符合美國電話號碼的各種合法格式（例如有沒有國碼 `1`、區碼有沒有加括號、中間用減號還是空白分隔）。我把整個畫面外框做成手機螢幕的樣子，每次檢查都會把結果依序記錄在下方，並用綠字與紅字區分有效與無效號碼。',
@@ -12370,9 +12495,12 @@ button {
       });
     });
 
+    let jsKind = 'practice';
+
     function buildJsList() {
+      jsListEl.innerHTML = '';
       let lastGroup = '';
-      jsProjectData.forEach((p, i) => {
+      jsProjectData.filter(p => p.kind === jsKind).forEach((p, i) => {
         if (p.group !== lastGroup) {
           const h = document.createElement('h4');
           h.textContent = p.group;
@@ -12400,7 +12528,7 @@ button {
       });
 
       document.getElementById('js-lab-title').textContent = `${p.title}（${p.en}）`;
-      document.getElementById('js-lab-what-label').textContent = p.group === '實作專案' ? '這個專案在做什麼' : '這個練習在做什麼';
+      document.getElementById('js-lab-what-label').textContent = p.kind === 'project' ? '這個專案在做什麼' : '這個練習在做什麼';
       document.getElementById('js-lab-what').textContent = p.what;
 
       const hint = document.getElementById('js-lab-hint');
@@ -12474,9 +12602,273 @@ button {
     setDevice(deviceWidth);
     loadPractice(practiceData[0].id);
 
-    buildJsList();
+    // 上方兩個方框：切換「練習專案／實作專案」
+    function setJsKind(kind) {
+      jsKind = kind;
+      document.querySelectorAll('.kind-tab').forEach(t => {
+        t.setAttribute('aria-selected', String(t.dataset.kind === kind));
+      });
+      buildJsList();
+      currentJsId = null;
+      const first = jsProjectData.find(p => p.kind === kind);
+      if (first) loadJsProject(first.id);
+      jsListEl.scrollTop = 0;
+    }
+    document.querySelectorAll('[data-count]').forEach(el => {
+      el.textContent = `${jsProjectData.filter(p => p.kind === el.dataset.count).length} 個`;
+    });
+    document.querySelectorAll('.kind-tab').forEach(t => {
+      t.addEventListener('click', () => { if (t.dataset.kind !== jsKind) setJsKind(t.dataset.kind); });
+    });
+
     setJsDevice(jsDeviceWidth);
-    loadJsProject(jsProjectData[0].id);
+    setJsKind('practice');
+
+    // ---- 練習作品：HTML／CSS 與 JavaScript 切換 ----
+    const langTabs = document.querySelectorAll('.lang-tab');
+    let currentLang = 'html';
+    function setLang(lang) {
+      currentLang = lang;
+      langTabs.forEach(t => t.setAttribute('aria-selected', String(t.dataset.lang === lang)));
+      document.getElementById('lab').hidden = lang !== 'html';
+      document.getElementById('js-lab').hidden = lang !== 'js';
+      requestAnimationFrame(() => { fitFrame(); fitJsFrame(); });
+    }
+    langTabs.forEach(t => t.addEventListener('click', () => { if (t.dataset.lang !== currentLang) setLang(t.dataset.lang); }));
+    document.querySelector('[data-lang-count="html"]').textContent = practiceData.length;
+    document.querySelector('[data-lang-count="js"]').textContent = jsProjectData.length;
+
+    // ---- 網站導覽 ----
+    (function () {
+      const $ = sel => document.querySelector(sel);
+      const mask = $('#tour-mask'), maskPath = mask.querySelector('path');
+      const spot = $('#tour-spot'), card = $('#tour-card'), welcome = $('#tour-welcome'), launch = $('#tour-launch');
+      const ui = {
+        step: card.querySelector('.tour-step'), title: card.querySelector('h4'), text: card.querySelector('.tour-text'),
+        doLine: card.querySelector('.tour-do'), prev: card.querySelector('.tour-prev'), next: card.querySelector('.tour-next'),
+        bar: card.querySelector('.tour-bar i'), close: card.querySelector('.tour-close')
+      };
+      const ROMAN = 'roman-numeral-converter';
+      const firstProject = () => jsProjectData.find(p => p.kind === 'project').id;
+
+      // 讓畫面回到每一步需要的狀態（按「上一步」時也能正確還原）
+      const ensure = {
+        lang: l => { if (currentLang !== l) setLang(l); },
+        kind: k => { if (jsKind !== k) setJsKind(k); },
+        project: id => { if (currentJsId !== id) loadJsProject(id); },
+        width: w => { if (jsDeviceWidth !== w) setJsDevice(w); },
+        code: on => {
+          if (jsLabBox.classList.contains('show-code') === on) return;
+          jsLabBox.classList.toggle('show-code', on);
+          jsCodeToggle.setAttribute('aria-pressed', String(on));
+          jsCodeToggle.textContent = on ? '看執行結果' : '看程式碼';
+          if (!on) fitJsFrame();
+        }
+      };
+      const roman = () => { ensure.lang('js'); ensure.kind('project'); ensure.project(ROMAN); };
+      const tidyLab = () => { ensure.code(false); ensure.width(window.innerWidth < 700 ? 375 : 1280); };
+
+      const steps = [
+        { el: '.hero .wrap', title: '關於我與這個網站',
+          text: '這裡是我的簡介，以及做這個網站的原因。數字卡整理了我累積的程式作品。' },
+        { el: '.route', title: '我的自學路線',
+          text: '從讀傳記受到啟發開始，到下一站的大學，這條路線整理了我自學寫程式的每個階段。' },
+        { el: '.lang-tabs', title: '可以直接操作的練習作品',
+          text: '這個區塊收錄可以在頁面上直接執行的練習，分成「HTML／CSS」和「JavaScript」兩類，用這兩個按鈕切換。',
+          prep: () => ensure.lang('html') },
+        { el: '#lab .lab', title: 'HTML／CSS 網頁基礎練習',
+          text: '預設顯示的是 HTML／CSS 練習。清單依學習順序和觀念分類，點選任何一個就會直接執行。',
+          prep: () => ensure.lang('html') },
+        { el: '.lang-tab[data-lang="js"]', title: '切換到 JavaScript',
+          text: '接下來用一個 JavaScript 專案，示範完整的操作方式。',
+          action: '請點擊「JavaScript」。', prep: () => ensure.lang('html') },
+        { el: '#js-lab .kind-tabs', title: '練習專案與實作專案',
+          text: 'JavaScript 分成兩類：「練習專案」是跟著課程步驟練習；「實作專案」只拿到功能需求和測試條件，由我獨立完成。',
+          prep: () => ensure.lang('js') },
+        { el: '.kind-tab[data-kind="project"]', title: '打開實作專案',
+          text: '我們來看一個我獨立完成的作品。',
+          action: '請點擊「實作專案」。', prep: () => { ensure.lang('js'); ensure.kind('practice'); } },
+        { el: `#js-lab-list .lab-item[data-id="${ROMAN}"]`, title: '選擇一個專案',
+          text: '清單裡的每一項都是一個專案，點選後右邊就會載入它。',
+          action: '請點擊「羅馬數字轉換器」。',
+          prep: () => { ensure.lang('js'); ensure.kind('project'); if (currentJsId === ROMAN) loadJsProject(firstProject()); } },
+        { el: '#js-lab .lab-notes > div:first-child', title: '先了解專案在做什麼',
+          text: '這裡說明這個專案的用途。下方的「試試看」會提示可以怎麼操作。',
+          prep: () => { roman(); ensure.code(false); } },
+        { el: '#js-lab-stage', title: '直接操作專案',
+          text: '這就是專案本身，可以直接使用。試著在輸入框輸入 2026，再按「Convert」，它會轉換成羅馬數字 MMXXVI。',
+          prep: () => { roman(); ensure.code(false); } },
+        { el: '#js-lab .seg', click: '#js-lab [data-js-width="375"]', title: '切換螢幕寬度',
+          text: '這三個按鈕可以切換手機、平板和電腦的寬度，看同一個專案在不同螢幕上的樣子。',
+          action: '請點擊「手機」。', prep: () => { roman(); ensure.code(false); ensure.width(1280); } },
+        { el: '#js-lab-stage', title: '手機寬度的畫面',
+          text: '畫面會依照真實的手機寬度重新排版，右下角標示了實際寬度和縮放比例。也可以再試試「平板」。',
+          prep: () => { roman(); ensure.code(false); ensure.width(375); } },
+        { el: '#js-code-toggle', title: '查看程式碼',
+          text: '每個專案都可以查看原始碼。',
+          action: '請點擊「看程式碼」。', prep: () => { roman(); ensure.code(false); } },
+        { el: '#js-lab .codetabs', title: '程式碼分頁',
+          text: '程式碼分成 JavaScript、HTML、CSS 三個分頁，可以分別點開來看。看完後按「看執行結果」，就能回到專案畫面。',
+          prep: () => { roman(); ensure.code(true); } },
+        { el: '#js-lab .lab-notes > div:last-child', title: '我練到的觀念',
+          text: '這裡整理了我在這個專案中練到的程式觀念。每個練習和專案都有這一欄。',
+          prep: () => roman() },
+        { el: '#works .work', title: '實際上線的網站',
+          text: '看完練習之後，這裡是我實際上線的四個網站。每個都分成「這是什麼」「我做了什麼」「我練到了什麼」，點「打開網站」可以看實際運作的版本。',
+          prep: tidyLab },
+        { el: '#works .work:last-of-type', title: '這個網站本身',
+          text: '最後一個作品，就是你現在正在看的這個網站。',
+          prep: tidyLab },
+        { el: '#tour-launch', title: '導覽結束', last: true,
+          text: '謝謝你看完導覽！想再看一次，隨時可以點右下角的「網站導覽」。',
+          prep: tidyLab }
+      ];
+
+      let idx = -1, active = false, token = 0, raf = 0, cleanup = null;
+      const smooth = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+      const isMobile = () => window.innerWidth <= 640;
+      const targetOf = st => (st && st.el) ? $(st.el) : null;
+
+      function scrollToEl(el) {
+        const r = el.getBoundingClientRect();
+        const vh = window.innerHeight, top = 80, cardH = card.offsetHeight || 230;
+        let y;
+        if (isMobile()) {
+          const avail = vh - top - cardH - 24;
+          y = r.height <= avail ? r.top + scrollY - top - (avail - r.height) / 2 : r.top + scrollY - top;
+        } else {
+          const block = r.height + cardH + 30;
+          y = block <= vh - top - 20 ? r.top + scrollY - top - (vh - top - block) / 2 : r.top + scrollY - top;
+        }
+        if (el.id === 'tour-launch') return;
+        window.scrollTo({ top: Math.max(0, y), behavior: smooth() });
+      }
+
+      function placeCard(r) {
+        const vw = window.innerWidth, vh = window.innerHeight, cw = card.offsetWidth, ch = card.offsetHeight, g = 16;
+        if (isMobile()) {
+          card.style.left = '12px';
+          card.style.top = (steps[idx].last ? 76 : vh - ch - 12) + 'px';
+          return;
+        }
+        let top, left;
+        if (!r) { left = (vw - cw) / 2; top = (vh - ch) / 2; }
+        else if (vh - r.bottom >= ch + g + 12) { top = r.bottom + g; left = r.left; }
+        else if (r.top - 76 >= ch + g) { top = r.top - ch - g; left = r.left; }
+        else if (vw - r.right >= cw + g + 12) { left = r.right + g; top = r.top; }
+        else if (r.left >= cw + g + 12) { left = r.left - cw - g; top = r.top; }
+        else { left = vw - cw - 20; top = vh - ch - 20; }
+        card.style.left = Math.min(Math.max(12, left), vw - cw - 12) + 'px';
+        card.style.top = Math.min(Math.max(76, top), vh - ch - 12) + 'px';
+      }
+
+      // 聚光燈與說明卡跟著目標移動（捲動、縮放視窗時也會跟上）
+      function loop() {
+        if (!active) return;
+        const el = targetOf(steps[idx]);
+        const r = el ? el.getBoundingClientRect() : null;
+        if (r && r.width > 0 && r.height > 0) {
+          const pad = 8;
+          // 用 SVG 遮罩把頁面變暗，只挖空目前介紹的區塊
+          const vw = window.innerWidth, vh = window.innerHeight;
+          const x = r.left - pad, y = r.top - pad, w = r.width + pad * 2, h = r.height + pad * 2, k = Math.min(14, w / 2, h / 2);
+          maskPath.setAttribute('d', `M0 0H${vw}V${vh}H0Z M${x + k} ${y}H${x + w - k}A${k} ${k} 0 0 1 ${x + w} ${y + k}V${y + h - k}A${k} ${k} 0 0 1 ${x + w - k} ${y + h}H${x + k}A${k} ${k} 0 0 1 ${x} ${y + h - k}V${y + k}A${k} ${k} 0 0 1 ${x + k} ${y}Z`);
+          mask.setAttribute('viewBox', `0 0 ${vw} ${vh}`);
+          mask.style.display = 'block';
+          spot.style.display = 'block';
+          spot.style.top = (r.top - pad) + 'px';
+          spot.style.left = (r.left - pad) + 'px';
+          spot.style.width = (r.width + pad * 2) + 'px';
+          spot.style.height = (r.height + pad * 2) + 'px';
+          placeCard(r);
+        } else {
+          spot.style.display = 'none';
+          mask.style.display = 'none';
+          placeCard(null);
+        }
+        raf = requestAnimationFrame(loop);
+      }
+
+      function go(i) {
+        if (cleanup) { cleanup(); cleanup = null; }
+        idx = i;
+        const st = steps[i], my = ++token;
+        if (st.prep) st.prep();
+        document.body.classList.toggle('tour-last', !!st.last);
+        ui.step.textContent = `${i + 1} / ${steps.length}`;
+        ui.title.textContent = st.title;
+        ui.text.textContent = st.text;
+        ui.doLine.hidden = !st.action;
+        ui.doLine.textContent = st.action || '';
+        ui.prev.disabled = i === 0;
+        ui.next.textContent = st.last ? '完成' : (st.action ? '幫我點' : '下一步');
+        ui.bar.style.width = ((i + 1) / steps.length * 100) + '%';
+        requestAnimationFrame(() => {
+          if (my !== token) return;
+          const el = targetOf(st);
+          if (el) scrollToEl(el);
+          if (st.action) {
+            const clickEl = st.click ? $(st.click) : el;
+            if (clickEl) {
+              // 教授自己點了亮起的按鈕，就自動進到下一步
+              const onClick = () => setTimeout(() => { if (my === token && active) go(i + 1); }, 350);
+              clickEl.addEventListener('click', onClick, { once: true });
+              cleanup = () => clickEl.removeEventListener('click', onClick);
+            }
+          }
+          ui.next.focus({ preventScroll: true });
+        });
+      }
+
+      function start() {
+        welcome.hidden = true;
+        active = true;
+        document.body.classList.add('touring');
+        card.style.display = 'block';
+        go(0);
+        cancelAnimationFrame(raf);
+        loop();
+      }
+
+      function end() {
+        active = false;
+        token++;
+        if (cleanup) { cleanup(); cleanup = null; }
+        cancelAnimationFrame(raf);
+        spot.style.display = 'none';
+        mask.style.display = 'none';
+        card.style.display = 'none';
+        document.body.classList.remove('touring', 'tour-last');
+        tidyLab();
+      }
+
+      ui.next.addEventListener('click', () => {
+        const st = steps[idx];
+        if (st.last) { end(); return; }
+        if (st.action) {
+          // 「幫我點」：由導覽代替教授按下那個按鈕
+          const c = st.click ? $(st.click) : targetOf(st);
+          if (c) { c.click(); return; }
+        }
+        go(idx + 1);
+      });
+      ui.prev.addEventListener('click', () => { if (idx > 0) go(idx - 1); });
+      ui.close.addEventListener('click', end);
+      document.addEventListener('keydown', e => {
+        if (e.key !== 'Escape') return;
+        if (active) end();
+        else if (!welcome.hidden) { markSeen(); welcome.hidden = true; }
+      });
+
+      // 第一次進站才詢問；之後用右下角按鈕隨時重新開始
+      const KEY = 'portfolio-tour-seen';
+      function seen() { try { return localStorage.getItem(KEY) === '1'; } catch (e) { return false; } }
+      function markSeen() { try { localStorage.setItem(KEY, '1'); } catch (e) {} }
+      $('#tw-start').addEventListener('click', () => { markSeen(); start(); });
+      $('#tw-skip').addEventListener('click', () => { markSeen(); welcome.hidden = true; });
+      launch.addEventListener('click', () => { if (active) end(); start(); });
+      if (!seen()) { welcome.hidden = false; $('#tw-start').focus(); }
+    })();
   </script>
 </body>
 </html>
